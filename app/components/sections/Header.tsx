@@ -1,17 +1,19 @@
 import Image from 'next/image';
 import casamontealto from '../../../public/images/CASAS MONTE ALTO.png';
 import mobileLogo from '../../../public/images/Logo.png';
+import LogoSvg from '../LogoSvg';
 
 const Header = () => {
   return (
     <section className="border-b-2 border-secondary pb-14 lg:pb-32">
-      <Image
+      {/* <Image
         className="max-lg:hidden w-full max-lg:h-[5rem] my-14 lg:py-32"
         src={casamontealto}
         alt="text"
         width={500}
         height={500}
-      />
+      /> */}
+      <LogoSvg hidden />
       <Image
         className="lg:hidden w-full my-14 lg:py-32"
         src={mobileLogo}

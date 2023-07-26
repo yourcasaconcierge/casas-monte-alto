@@ -2,6 +2,7 @@ import casamontealto from '../../public/images/CASAS MONTE ALTO.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BsArrowUpRight } from 'react-icons/bs';
+import LogoSvg from './LogoSvg';
 
 const Footer = () => {
   return (
@@ -17,13 +18,7 @@ const Footer = () => {
         alt="villa"
         className="bg-secondary w-full h-[300px] lg:h-[600px] object-cover"
       />
-      <Image
-        className="w-full py-14 lg:py-32"
-        src={casamontealto}
-        alt="text"
-        width={500}
-        height={500}
-      />
+      <LogoSvg />
       <div className="flex justify-between">
         <p>© 2023 CASAS MONTE ALTO. All rights reserved.</p>
         <p>Credits</p>
