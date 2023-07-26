@@ -7,12 +7,26 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      colors: {
+        primary: {
+          DEFAULT: '#fff',
+        },
+        secondary: {
+          DEFAULT: '#353535',
+        },
+        accent: {
+          DEFAULT: '#',
+        },
+      },
+      screens: {
+        mob: '475px',
+        tablet: '768px',
+        laptop: '1024px',
+        desktop: '1280px',
+        laptopl: '1440px',
+        desktopl: '1920px',
       },
     },
   },
-  plugins: [],
-}
+  plugins: [require('@tailwindcss/typography')],
+};

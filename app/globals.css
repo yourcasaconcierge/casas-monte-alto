@@ -2,26 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 150px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.scrollhost {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.scrollhost::-webkit-scrollbar {
+  display: none;
+}
+.layout {
+  @apply container mx-auto px-3 2xl:px-5;
+}
+
+/* MENU STYLES */
+.menu-btn {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.menu-btn > div {
+  width: 28px;
+  height: 3px;
+  margin: 3px;
+}
+
+.open:nth-child(1) {
+  transform: rotate(45deg) translateY(0px) translateX(6px);
+  transition: all 400ms ease-in-out;
+}
+
+.open:nth-child(2) {
+  transform: rotate(-45deg) translateY(0px) translateX(6px);
+  width: 28px;
+  transition: all 400ms ease-in-out;
+}
+
+.close:nth-child(1) {
+  transform: rotate(0) translateY(0);
+  transition: all 400ms ease-in-out;
+}
+
+.close:nth-child(2) {
+  width: 20px;
+  margin-left: 10px;
+  transition: all 400ms ease-in-out;
 }
