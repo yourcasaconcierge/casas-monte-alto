@@ -11,6 +11,7 @@ const EntryPreview = ({
   content,
 }: EntryMetaData) => {
   const image = getRandomImage();
+  const firstLine = content as string;
   return (
     <div
       key={slug}
@@ -23,13 +24,13 @@ const EntryPreview = ({
     >
       <Link href={`/journal/entry/${slug}`} className="flex flex-col gap-3">
         <img src={image} className="bg-secondary w-full h-full lg:h-[500px]" />
-        <div className="flex gap-2 items-center">
+        <div className="lg:flex gap-2 items-center">
           <p>Entry </p>
           <p className="font-medium text-sm lg:text-xl">{title}</p>
         </div>
       </Link>
       <article className="line-clamp-1">
-        <Markdown>{content}</Markdown>
+        <Markdown>{firstLine}</Markdown>
       </article>
     </div>
   );
