@@ -1,7 +1,6 @@
 export interface EntryMetaData {
+  slug?: string;
   title?: string;
   date?: string;
-  subtitle?: string;
-  slug: string;
   content?: string;
 }

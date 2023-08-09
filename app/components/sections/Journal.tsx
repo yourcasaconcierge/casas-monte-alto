@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Journal = () => {
   return (
     <section>
@@ -12,7 +10,7 @@ const Journal = () => {
             Garibaldi&apos;s Rich Heritage
           </p>
         </div>
-        <div className="lg:row-start-2 lg:row-span-6">
+        <div className="lg:row-start-1 lg:row-span-6">
           <div className="bg-secondary w-full h-full mb-2"></div>
           <p>
             Unveiling the Essence of Casa de Gauchos: A <br /> Journey into

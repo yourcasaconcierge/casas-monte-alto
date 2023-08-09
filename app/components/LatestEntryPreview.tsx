@@ -5,21 +5,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Markdown from 'markdown-to-jsx';
 
-const EntryPreview = ({ slug, title, content }: EntryMetaData) => {
+const LatestEntryPreview = ({ slug, title, content }: EntryMetaData) => {
   const image = getRandomImage();
   const firstLine = content as string;
   return (
-    <div
-      key={slug}
-      className={`
-      flex flex-col relative col-span-2 lg:col-span-1`}
-    >
+    <div key={slug} className={`flex flex-col relative mb-14`}>
       <Link href={`/journal/entry/${slug}`} className="flex flex-col gap-3">
         <Image
           src={image}
-          className="bg-secondary w-full aspect-square object-cover"
+          className="bg-secondary w-full max-h-[500px] aspect-video object-cover"
           alt={title as string}
-          layout="responsive"
           width={500}
           height={500}
         />
@@ -36,4 +31,4 @@ const EntryPreview = ({ slug, title, content }: EntryMetaData) => {
   );
 };
 
-export default EntryPreview;
+export default LatestEntryPreview;

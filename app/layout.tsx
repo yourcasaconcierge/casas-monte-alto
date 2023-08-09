@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
+import { EntryProvider } from '@/context/EntryContext';
 import { Roboto_Mono } from 'next/font/google';
+import AuthProvider from '@/context/AuthContext';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
 import Scrollbars from './components/Scrollbar';
@@ -21,9 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${robotoMono.className} scrollhost`}>
-        <Nav />
-        <Scrollbars />
-        {children}
+        <AuthProvider>
+          <Nav />
+          <Scrollbars />
+          <EntryProvider>{children}</EntryProvider>
+        </AuthProvider>
         <Footer />
       </body>
     </html>

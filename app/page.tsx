@@ -1,7 +1,7 @@
-import Header from './components/sections/Header';
-import Properties from './components/sections/Properties';
-import Journal from './components/sections/Journal';
 import Contact from './components/sections/Contact';
+import Header from './components/sections/Header';
+import Journal from './components/sections/Journal';
+import Properties from './components/sections/Properties';
 
 export default function Home() {
   return (

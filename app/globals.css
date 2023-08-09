@@ -34,22 +34,22 @@ html {
 
 .open:nth-child(1) {
   transform: rotate(45deg) translateY(0px) translateX(6px);
-  transition: all 400ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .open:nth-child(2) {
   transform: rotate(-45deg) translateY(0px) translateX(6px);
   width: 28px;
-  transition: all 400ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .close:nth-child(1) {
   transform: rotate(0) translateY(0);
-  transition: all 400ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .close:nth-child(2) {
   width: 20px;
   margin-left: 10px;
-  transition: all 400ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }

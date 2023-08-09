@@ -116,7 +116,7 @@ const Scrollbars: React.FC = () => {
       onMouseOut={handleMouseOut}
       ref={scrollbar}
       className={`${
-        isMobile ? 'hidden' : 'block'
+        isMobile ? 'hidden' : ''
       } flex justify-center fixed top-0 right-0 w-3 h-screen z-[1001] bg-transparent opacity-0`}
     >
       <div ref={thumb} className="w-2 bg-black rounded-2xl cursor-grab"></div>

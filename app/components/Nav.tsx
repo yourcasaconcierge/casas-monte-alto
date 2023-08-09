@@ -32,7 +32,7 @@ const Nav = () => {
           >
             casas monte alto
           </Link>
-          <Link href="/#properties" className="hidden lg:block">
+          <Link href="/properties" className="hidden lg:block">
             properties
           </Link>
           {/* Menu Btn */}

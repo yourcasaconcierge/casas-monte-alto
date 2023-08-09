@@ -3,9 +3,11 @@
 import { Swiper } from 'swiper/react';
 import { SwiperSlide } from 'swiper/react';
 import { Scrollbar, A11y } from 'swiper/modules';
+import { useRouter } from 'next/navigation';
 
 import 'swiper/css';
 import 'swiper/css/scrollbar';
+import Image from 'next/image';
 
 const Properties = () => {
   const properties = [
@@ -40,6 +42,8 @@ const Properties = () => {
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
     },
   ];
+
+  const router = useRouter();
   return (
     <section id="properties">
       <h2 className="text-3xl lg:text-5xl mb-5">Properties</h2>
@@ -50,12 +54,17 @@ const Properties = () => {
         scrollbar={{ draggable: true }}
       >
         {properties.map((property, index) => (
-          <SwiperSlide key={index}>
-            <article className="flex flex-col w-full h-full">
-              <img
+          <SwiperSlide
+            key={index}
+            onClick={() => router.push(`/properties/${property.title}`)}
+          >
+            <article className="flex flex-col w-full h-full cursor-pointer">
+              <Image
                 src={property.src}
                 alt={property.title}
                 className="object-cover w-full h-[40vh] lg:h-[80vh]"
+                width={1920}
+                height={1080}
               />
               <div className="flex flex-col gap-2 py-5">
                 <h3 className="text-2xl">{property.title}</h3>
