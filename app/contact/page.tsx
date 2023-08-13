@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 const ContactPage = () => {
   return (
-    <main className="layout lg:h-screen lg:flex my-32">
+    <main className="layout lg:h-screen lg:flex max-lg:mt-32 mb-32">
       <Image
         src="https://images.unsplash.com/photo-1448697138198-9aa6d0d84bf4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
         className="bg-secondary lg:w-1/2 h-[350px] lg:h-full w-full max-lg:mt-14 object-cover"
@@ -20,7 +20,6 @@ const ContactPage = () => {
         >
           contact us
         </h1>
-        <Link href="mailto:help@casamontealto.com">help@casamontealto.com</Link>
         <Link href="https://www.airbnb.ca/users/show/160604126" target="_blank">
           Visit our AirBnb page
         </Link>

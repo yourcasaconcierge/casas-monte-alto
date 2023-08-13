@@ -1,13 +1,11 @@
-import { EntryMetaData } from '@/utils/EntryMetaData';
+import { EntryPreview } from '@/types/EntryTypes';
 import { getRandomImage } from '@/utils/getRandomImage';
-import DeleteButton from './button/DeleteButton';
 import Image from 'next/image';
 import Link from 'next/link';
-import Markdown from 'markdown-to-jsx';
 
-const EntryPreview = ({ slug, title, content }: EntryMetaData) => {
-  const image = getRandomImage();
-  const firstLine = content as string;
+const EntryPreview = ({ slug, title, excerpt, image }: EntryPreview) => {
+  // const image = getRandomImage();
+
   return (
     <div
       key={slug}
@@ -25,13 +23,10 @@ const EntryPreview = ({ slug, title, content }: EntryMetaData) => {
         />
         <div className="lg:flex gap-2 items-center">
           <p>Entry </p>
-          <p className="font-medium text-sm lg:text-xl">{title}</p>
+          <p className="font-medium text-sm lg:text-[1.04rem]">{title}</p>
         </div>
       </Link>
-      <article className="line-clamp-1">
-        <Markdown>{firstLine}</Markdown>
-      </article>
-      <DeleteButton slug={slug} />
+      <article className="line-clamp-1">{excerpt}</article>
     </div>
   );
 };

@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import { EntryProvider } from '@/context/EntryContext';
 import { Roboto_Mono } from 'next/font/google';
-import AuthProvider from '@/context/AuthContext';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
 import Scrollbars from './components/Scrollbar';
 
 import './globals.css';
+import { PropertiesProvider } from '@/context/PropertiesContext';
 
 const robotoMono = Roboto_Mono({ subsets: ['latin'] });
 
@@ -23,11 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${robotoMono.className} scrollhost`}>
-        <AuthProvider>
-          <Nav />
-          <Scrollbars />
+        <Nav />
+        <Scrollbars />
+        <PropertiesProvider>
           <EntryProvider>{children}</EntryProvider>
-        </AuthProvider>
+        </PropertiesProvider>
+
         <Footer />
       </body>
     </html>

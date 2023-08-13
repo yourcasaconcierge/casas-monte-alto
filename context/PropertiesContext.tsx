@@ -1,30 +1,30 @@
 'use client';
 
 import { createContext, useEffect, useState } from 'react';
-import { Entry } from '@/types/EntryTypes';
+import { Property } from '@/types/PropertyTypes';
 import axios from 'axios';
 
-interface EntryContextProps {
-  entries: Entry[];
+interface PropertiesContextProps {
+  properties: Property[];
   loading: boolean;
 }
 
-export const EntryContext = createContext<EntryContextProps>({
-  entries: [],
+export const PropertiesContext = createContext<PropertiesContextProps>({
+  properties: [],
   loading: true,
 });
 
-export const EntryProvider = ({ children }: any) => {
-  const [entries, setEntries] = useState<Entry[]>([]);
+export const PropertiesProvider = ({ children }: any) => {
+  const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetch = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('/api/journal/entries');
+        const response = await axios.get('/api/properties');
         console.log('data', response.data);
-        const filterEntriesByDate = response.data.entries.sort(
+        const filterPropertiesByDate = response.data.properties.sort(
           (a: any, b: any) => {
             return (
               new Date(b.node.publishedAt).getTime() -
@@ -32,7 +32,7 @@ export const EntryProvider = ({ children }: any) => {
             );
           }
         );
-        setEntries(filterEntriesByDate);
+        setProperties(filterPropertiesByDate);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -42,11 +42,12 @@ export const EntryProvider = ({ children }: any) => {
   }, []);
 
   const value = {
-    entries,
+    properties,
     loading,
   };
-
   return (
-    <EntryContext.Provider value={value}>{children}</EntryContext.Provider>
+    <PropertiesContext.Provider value={value}>
+      {children}
+    </PropertiesContext.Provider>
   );
 };

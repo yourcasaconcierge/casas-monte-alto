@@ -1,9 +1,9 @@
 'use client';
 
 import { motion as m } from 'framer-motion';
-import { useAnimate, stagger, motion } from 'framer-motion';
+import { useAnimate, stagger } from 'framer-motion';
 import { useEffect } from 'react';
-import { useSession } from 'next-auth/react';
+
 import Link from 'next/link';
 
 const staggerMenuItems = stagger(0.1, { startDelay: 0.2 });
@@ -14,12 +14,6 @@ interface MenuProps {
 }
 
 const Menu = ({ open, toggle }: MenuProps) => {
-  const { data: session } = useSession({
-    required: true,
-    onUnauthenticated() {
-      console.log('unauth');
-    },
-  });
   const [scope, animate] = useAnimate();
 
   useEffect(() => {
@@ -65,13 +59,6 @@ const Menu = ({ open, toggle }: MenuProps) => {
         </li>
         <li onClick={toggle}>
           <Link href="/contact">Contact</Link>
-        </li>
-        <li
-          className={`
-          ${!session && 'hidden'}
-          `}
-        >
-          <Link href="/api/auth/signout">Sign out</Link>
         </li>
       </ul>
     </m.div>
