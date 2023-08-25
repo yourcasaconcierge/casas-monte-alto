@@ -1,5 +1,11 @@
+import About from './components/About';
+
 const AboutPage = () => {
-  return <div className="my-32 layout">AboutPage</div>;
+  return (
+    <main className="pb-32 layout">
+      <About />
+    </main>
+  );
 };
 
 export default AboutPage;

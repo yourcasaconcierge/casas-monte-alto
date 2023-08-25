@@ -1,8 +1,13 @@
+'use client';
+
 import Image from 'next/image';
 import LogoSvg from '../LogoSvg';
 import SmallLogoSvg from '../SmallLogoSvg';
+import { useContext } from 'react';
+import { LanguageContext } from '@/context/LanguageContext';
 
 const Header = () => {
+  const { head } = useContext(LanguageContext);
   return (
     <section className="border-b-2 border-secondary pb-14 lg:pb-32">
       <LogoSvg hidden />
@@ -15,8 +20,7 @@ const Header = () => {
         height={600}
       />
       <h2 className="mt-5 max-sm:text-sm lg:text-lg">
-        Short Term Rental Property Management <br /> Hospitality Services In
-        Mendoza, Argentina
+        {head?.line1} <br /> {head?.line2}
       </h2>
     </section>
   );

@@ -1,9 +1,14 @@
+'use client';
+
 import { BsArrowUpRight } from 'react-icons/bs';
+import { LanguageContext } from '@/context/LanguageContext';
+import { useContext } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import LogoSvg from './LogoSvg';
 
 const Footer = () => {
+  const { foot } = useContext(LanguageContext);
   return (
     <footer className="layout pb-5 max-sm:text-[0.6rem]">
       <div className="py-14 border-t-2 border-secondary">
@@ -24,8 +29,8 @@ const Footer = () => {
       />
       <LogoSvg />
       <div className="flex justify-between">
-        <p>© 2023 CASAS MONTE ALTO. All rights reserved.</p>
-        <Link href="/">Credits</Link>
+        <p>{foot?.line1}</p>
+        <Link href="/">{foot?.line2}</Link>
       </div>
     </footer>
   );

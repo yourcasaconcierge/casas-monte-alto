@@ -24,7 +24,7 @@ module.exports = {
         laptop: '1024px',
         desktop: '1280px',
         laptopl: '1440px',
-        desktopl: '1920px',
+        desktopl: '1680px',
       },
     },
   },

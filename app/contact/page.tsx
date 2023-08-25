@@ -1,8 +1,5 @@
-import { Inter } from 'next/font/google';
 import Image from 'next/image';
-import Link from 'next/link';
-
-const inter = Inter({ subsets: ['latin'] });
+import ContactPageContainer from './components/ContactPageContainer';
 
 const ContactPage = () => {
   return (
@@ -14,16 +11,7 @@ const ContactPage = () => {
         width={1470}
         height={800}
       />
-      <div className="w-full flex flex-col gap-5 lg:gap-8 justify-center items-center max-lg:mt-14">
-        <h1
-          className={`${inter.className} text-5xl lg:text-8xl capitalize font-bold`}
-        >
-          contact us
-        </h1>
-        <Link href="https://www.airbnb.ca/users/show/160604126" target="_blank">
-          Visit our AirBnb page
-        </Link>
-      </div>
+      <ContactPageContainer />
     </main>
   );
 };

@@ -20,6 +20,7 @@ const PropertyPreview = () => {
             alt={property.node.propertyName}
             width={300}
             height={300}
+            className="max-md:w-full object-cover"
           />
           <p>{property.node.propertyName}</p>
         </Link>

@@ -27,7 +27,7 @@ const ProperyPage = (props: any) => {
     <main className="my-32 layout lg:text-lg flex flex-col gap-10">
       {!property ? (
         <div>
-          <h1 className="text-5xl font-bold">Loading...</h1>
+          <h1 className="">Loading...</h1>
         </div>
       ) : (
         <>

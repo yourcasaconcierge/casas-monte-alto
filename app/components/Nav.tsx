@@ -1,7 +1,8 @@
 'use client';
 
 import { Inter } from 'next/font/google';
-import { useState } from 'react';
+import { LanguageContext } from '@/context/LanguageContext';
+import { useContext, useState } from 'react';
 import Link from 'next/link';
 import Menu from './Menu';
 
@@ -9,6 +10,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState('close');
+  const { language, nav, toggleLanguage } = useContext(LanguageContext);
   const toggleMenu = () => {
     isOpen === 'close' ? setIsOpen('open') : setIsOpen('close');
   };
@@ -22,9 +24,9 @@ const Nav = () => {
       >
         <div className="flex justify-between items-center layout">
           <div className="hidden lg:flex gap-3">
-            <Link href="/about">about</Link>
-            <Link href="/journal/entries">journal</Link>
-            <Link href="/contact">contact</Link>
+            <Link href="/about">{nav?.about}</Link>
+            <Link href="/journal/entries">{nav?.journal}</Link>
+            <Link href="/contact">{nav?.contact}</Link>
           </div>
           <Link
             href="/"
@@ -32,9 +34,36 @@ const Nav = () => {
           >
             casas monte alto
           </Link>
-          <Link href="/properties" className="hidden lg:block">
-            properties
-          </Link>
+
+          <div className="flex gap-5">
+            <button
+              onClick={toggleLanguage}
+              className={`uppercase hidden lg:flex gap-1 text-xl font-bold cursor-pointer ${inter.className}`}
+            >
+              <span
+                className={`${
+                  language === 'english' ? 'text-secondary' : 'text-neutral-400'
+                }`}
+              >
+                en
+              </span>
+              <span className="text-[80%]">|</span>
+              <span
+                className={`${
+                  language === 'spanish' ? 'text-secondary' : 'text-neutral-400'
+                }`}
+              >
+                es
+              </span>
+            </button>
+            <Link
+              href="/properties"
+              className="hidden lg:block w-[105.06px] text-center"
+            >
+              {nav?.properties}
+            </Link>
+          </div>
+
           {/* Menu Btn */}
           <div
             onClick={toggleMenu}
