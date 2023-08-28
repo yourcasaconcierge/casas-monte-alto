@@ -9,7 +9,6 @@ import {
   footer as footS,
   aboutPage as aboutPageS,
 } from '@/data/spanish';
-import ClientOnly from '@/app/components/ClientOnly';
 
 interface LanguageContextProps {
   language: string;
@@ -71,8 +70,10 @@ export const LanguageProvider = ({ children }: any) => {
   const languageStorage =
     typeof window !== 'undefined' && localStorage.getItem('language');
   const languageNavigator =
-    // typeof window !== 'undefined' &&
-    navigator?.language.toLowerCase().startsWith('es') ? 'spanish' : 'english';
+    typeof window !== 'undefined' &&
+    navigator?.language.toLowerCase().startsWith('es')
+      ? 'spanish'
+      : 'english';
   const [language, setLanguage] = useState(
     languageStorage || languageNavigator
   );
@@ -91,6 +92,8 @@ export const LanguageProvider = ({ children }: any) => {
       localStorage.setItem('language', 'english');
     }
   };
+
+  useEffect(() => {}, []);
 
   useEffect(() => {
     if (language === 'english') {

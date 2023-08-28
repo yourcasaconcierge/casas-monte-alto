@@ -2,10 +2,11 @@
 
 import { Inter } from 'next/font/google';
 import { LanguageContext } from '@/context/LanguageContext';
-import { useContext, useState } from 'react';
+import { Suspense, useContext, useState } from 'react';
 import Link from 'next/link';
 import Menu from './Menu';
 import LanguageButton from './LanguageButton';
+import ClientOnly from './ClientOnly';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -37,7 +38,11 @@ const Nav = () => {
           </Link>
 
           <div className="flex gap-5">
-            <LanguageButton />
+            <Suspense fallback={<div>Loading...</div>}>
+              <ClientOnly>
+                <LanguageButton />
+              </ClientOnly>
+            </Suspense>
             <Link
               href="/properties"
               className="hidden lg:block w-[105.06px] text-center"
