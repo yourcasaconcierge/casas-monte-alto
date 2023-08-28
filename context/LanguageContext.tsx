@@ -57,7 +57,7 @@ interface LanguageContextProps {
 }
 
 export const LanguageContext = createContext<LanguageContextProps>({
-  language: 'english',
+  language: navigator.language === 'es' ? 'spanish' : 'english',
   nav: navigation,
   head: header,
   cont: contact,
