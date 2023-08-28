@@ -1,10 +1,10 @@
 'use client';
 
 import { EntryContext } from '@/context/EntryContext';
+import { LanguageContext } from '@/context/LanguageContext';
 import { useContext } from 'react';
 import EntryPreview from '@/app/components/EntryPreview';
 import LatestEntryPreview from '@/app/components/LatestEntryPreview';
-import { LanguageContext } from '@/context/LanguageContext';
 
 const EntriesPage = () => {
   const { entries, loading } = useContext(EntryContext);

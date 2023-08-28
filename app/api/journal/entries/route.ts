@@ -18,6 +18,7 @@ export async function GET(req: Request) {
               featuredImage {
                 url
               }
+              publishedAt
               slug
               spanishExcerpt
               spanishSubtitle
@@ -25,11 +26,10 @@ export async function GET(req: Request) {
               spanishContent {
                 markdown
               }
+              createdAt
               englishContent {
                 markdown
               }
-              publishedAt
-              createdAt
             }
           }
         }

@@ -1,11 +1,8 @@
 import { EntryPreview } from '@/types/EntryTypes';
-import { getRandomImage } from '@/utils/getRandomImage';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const EntryPreview = ({ slug, title, excerpt, image }: EntryPreview) => {
-  // const image = getRandomImage();
-
   return (
     <div
       key={slug}
@@ -21,7 +18,7 @@ const EntryPreview = ({ slug, title, excerpt, image }: EntryPreview) => {
           width={500}
           height={500}
         />
-        <div className="lg:flex gap-2 items-center">
+        <div className="items-center">
           <p>Entry </p>
           <p className="font-medium text-sm lg:text-[1.04rem]">{title}</p>
         </div>

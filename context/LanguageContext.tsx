@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { navigation, header, contact, footer, aboutPage } from '@/data/english';
 import {
   navigation as navS,
@@ -57,7 +57,7 @@ interface LanguageContextProps {
 }
 
 export const LanguageContext = createContext<LanguageContextProps>({
-  language: navigator.language === 'es' ? 'spanish' : 'english',
+  language: '',
   nav: navigation,
   head: header,
   cont: contact,
@@ -67,7 +67,9 @@ export const LanguageContext = createContext<LanguageContextProps>({
 });
 
 export const LanguageProvider = ({ children }: any) => {
-  const [language, setLanguage] = useState('english');
+  const [language, setLanguage] = useState(
+    navigator.language === 'es' ? 'spanish' : 'english'
+  );
   const [nav, setNav] = useState(navigation);
   const [head, setHead] = useState(header);
   const [cont, setCont] = useState(contact);
@@ -77,20 +79,26 @@ export const LanguageProvider = ({ children }: any) => {
   const toggleLanguage = () => {
     if (language === 'english') {
       setLanguage('spanish');
-      setNav(navS);
-      setHead(headS);
-      setCont(contS);
-      setFoot(footS);
-      setAbout(aboutPageS);
     } else {
       setLanguage('english');
+    }
+  };
+
+  useEffect(() => {
+    if (language === 'english') {
       setNav(navigation);
       setHead(header);
       setCont(contact);
       setFoot(footer);
       setAbout(aboutPage);
+    } else {
+      setNav(navS);
+      setHead(headS);
+      setCont(contS);
+      setFoot(footS);
+      setAbout(aboutPageS);
     }
-  };
+  }, [language]);
 
   const value = {
     language,
