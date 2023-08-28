@@ -71,10 +71,8 @@ export const LanguageProvider = ({ children }: any) => {
   const languageStorage =
     typeof window !== 'undefined' && localStorage.getItem('language');
   const languageNavigator =
-    typeof window !== 'undefined' &&
-    navigator?.language.toLowerCase().startsWith('es')
-      ? 'spanish'
-      : 'english';
+    // typeof window !== 'undefined' &&
+    navigator?.language.toLowerCase().startsWith('es') ? 'spanish' : 'english';
   const [language, setLanguage] = useState(
     languageStorage || languageNavigator
   );
