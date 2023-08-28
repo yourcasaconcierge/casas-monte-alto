@@ -67,9 +67,7 @@ export const LanguageContext = createContext<LanguageContextProps>({
 });
 
 export const LanguageProvider = ({ children }: any) => {
-  const [language, setLanguage] = useState(
-    navigator.language.toLowerCase().startsWith('es') ? 'spanish' : 'english'
-  );
+  const [language, setLanguage] = useState('');
   const [nav, setNav] = useState(navigation);
   const [head, setHead] = useState(header);
   const [cont, setCont] = useState(contact);
@@ -85,6 +83,9 @@ export const LanguageProvider = ({ children }: any) => {
   };
 
   useEffect(() => {
+    setLanguage(
+      navigator?.language.toLowerCase().startsWith('es') ? 'spanish' : 'english'
+    );
     if (language === 'english') {
       setNav(navigation);
       setHead(header);
