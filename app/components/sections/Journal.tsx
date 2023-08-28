@@ -32,9 +32,9 @@ const Journal = () => {
               width={1000}
               height={650}
             />
-            <div className="lg:flex gap-2 items-center">
+            <div>
               <p>Entry </p>
-              <p className="font-medium text-sm lg:text-xl">
+              <p className="font-medium text-sm lg:text-lg">
                 {language === 'english'
                   ? entry.node?.englishTitle
                   : entry.node?.spanishTitle}
