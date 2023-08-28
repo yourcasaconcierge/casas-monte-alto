@@ -14,7 +14,7 @@ const Journal = () => {
 
   return (
     <section>
-      <h3 className="text-center text-xl capitalize mb-5">{nav?.journal}</h3>
+      <h3 className="text-center text-xl capitalize mb-14">{nav?.journal}</h3>
       <div className="flex max-lg:flex-col justify-between gap-32">
         {entries?.map((entry, index) => (
           <Link
