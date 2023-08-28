@@ -39,7 +39,7 @@ const Animation = ({
           }}
           initial="hidden"
           animate={mainControls}
-          transition={{ duration: 1, delay: 0.5 }}
+          transition={{ duration: 1 }}
           className="relative overflow-hidden"
         >
           {children}
@@ -54,7 +54,7 @@ const Animation = ({
           }}
           initial="hidden"
           animate={mainControls}
-          transition={{ duration: 1.5, delay: 0.5 }}
+          transition={{ duration: 1.5 }}
         >
           {children}
         </m.div>
@@ -68,7 +68,7 @@ const Animation = ({
           }}
           initial="hidden"
           animate={mainControls}
-          transition={{ duration: 1.5, delay: 0.5 }}
+          transition={{ duration: 1.5 }}
         >
           {children}
         </m.div>
@@ -82,7 +82,7 @@ const Animation = ({
           }}
           initial="hidden"
           animate={mainControls}
-          transition={{ duration: 1.5, delay: 0.5 }}
+          transition={{ duration: 1.5 }}
           className="relative"
         >
           {children}
