@@ -68,7 +68,7 @@ export const LanguageContext = createContext<LanguageContextProps>({
 
 export const LanguageProvider = ({ children }: any) => {
   const [language, setLanguage] = useState(
-    navigator.language === 'es' ? 'spanish' : 'english'
+    navigator.language.toLowerCase().startsWith('es') ? 'spanish' : 'english'
   );
   const [nav, setNav] = useState(navigation);
   const [head, setHead] = useState(header);
