@@ -9,6 +9,7 @@ import {
   footer as footS,
   aboutPage as aboutPageS,
 } from '@/data/spanish';
+import ClientOnly from '@/app/components/ClientOnly';
 
 interface LanguageContextProps {
   language: string;
@@ -67,11 +68,10 @@ export const LanguageContext = createContext<LanguageContextProps>({
 });
 
 export const LanguageProvider = ({ children }: any) => {
-  const languageStorage = localStorage && localStorage.getItem('language');
-  const languageNavigator =
-    navigator && navigator?.language.toLowerCase().startsWith('es')
-      ? 'spanish'
-      : 'english';
+  const languageStorage = localStorage.getItem('language');
+  const languageNavigator = navigator?.language.toLowerCase().startsWith('es')
+    ? 'spanish'
+    : 'english';
   const [language, setLanguage] = useState(
     languageStorage || languageNavigator
   );
@@ -80,6 +80,7 @@ export const LanguageProvider = ({ children }: any) => {
   const [cont, setCont] = useState(contact);
   const [foot, setFoot] = useState(footer);
   const [about, setAbout] = useState(aboutPage);
+  const [isClient, setIsClient] = useState(false);
 
   const toggleLanguage = () => {
     if (language === 'english') {
@@ -92,20 +93,26 @@ export const LanguageProvider = ({ children }: any) => {
   };
 
   useEffect(() => {
-    if (language === 'english') {
-      setNav(navigation);
-      setHead(header);
-      setCont(contact);
-      setFoot(footer);
-      setAbout(aboutPage);
-    } else {
-      setNav(navS);
-      setHead(headS);
-      setCont(contS);
-      setFoot(footS);
-      setAbout(aboutPageS);
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      if (language === 'english') {
+        setNav(navigation);
+        setHead(header);
+        setCont(contact);
+        setFoot(footer);
+        setAbout(aboutPage);
+      } else {
+        setNav(navS);
+        setHead(headS);
+        setCont(contS);
+        setFoot(footS);
+        setAbout(aboutPageS);
+      }
     }
-  }, [language]);
+  }, [isClient, language]);
 
   const value = {
     language,
