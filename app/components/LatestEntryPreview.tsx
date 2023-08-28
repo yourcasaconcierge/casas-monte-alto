@@ -1,11 +1,8 @@
 import { EntryPreview } from '@/types/EntryTypes';
-import { getRandomImage } from '@/utils/getRandomImage';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const LatestEntryPreview = ({ slug, title, excerpt, image }: EntryPreview) => {
-  // const image = getRandomImage();
-
   return (
     <div key={slug} className={`flex flex-col relative mb-14`}>
       <Link href={`/journal/entry/${slug}`} className="flex flex-col gap-3">

@@ -4,9 +4,11 @@ import { EntryContext } from '@/context/EntryContext';
 import { useContext } from 'react';
 import EntryPreview from '@/app/components/EntryPreview';
 import LatestEntryPreview from '@/app/components/LatestEntryPreview';
+import { LanguageContext } from '@/context/LanguageContext';
 
 const EntriesPage = () => {
   const { entries, loading } = useContext(EntryContext);
+  const { language } = useContext(LanguageContext);
   const firstEntry = entries[0];
   const restOfEntries = entries.slice(1);
 
@@ -19,8 +21,16 @@ const EntriesPage = () => {
           {firstEntry && (
             <LatestEntryPreview
               slug={firstEntry.node.slug}
-              title={firstEntry.node.title}
-              excerpt={firstEntry.node.excerpt}
+              title={
+                language === 'english'
+                  ? firstEntry.node.englishTitle
+                  : firstEntry.node.spanishTitle
+              }
+              excerpt={
+                language === 'english'
+                  ? firstEntry.node.englishExcerpt
+                  : firstEntry.node.spanishExcerpt
+              }
               image={firstEntry.node.featuredImage.url}
             />
           )}
@@ -30,8 +40,16 @@ const EntriesPage = () => {
                 <EntryPreview
                   key={entry.node.slug}
                   slug={entry.node.slug}
-                  title={entry.node.title}
-                  excerpt={entry.node.excerpt}
+                  title={
+                    language === 'english'
+                      ? entry.node.englishTitle
+                      : entry.node.spanishTitle
+                  }
+                  excerpt={
+                    language === 'english'
+                      ? entry.node.englishExcerpt
+                      : entry.node.spanishExcerpt
+                  }
                   image={entry.node.featuredImage.url}
                 />
               );

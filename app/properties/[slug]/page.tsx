@@ -60,7 +60,7 @@ const ProperyPage = (props: any) => {
                   <Image
                     src={image.url}
                     alt=""
-                    className="object-cover w-full h-[20vh] lg:aspect-square"
+                    className="object-cover aspect-square"
                     width={1920}
                     height={1080}
                   />

@@ -8,23 +8,28 @@ const client = new ApolloClient({
 export async function GET(req: Request) {
   const { data } = await client.query({
     query: gql`
-      query Entries {
+      query Entry {
         entriesConnection {
           edges {
             node {
-              title
-              id
-              slug
-              createdAt
-              excerpt
-              publishedAt
-              content {
-                markdown
-              }
+              englishExcerpt
+              englishSubtitle
+              englishTitle
               featuredImage {
                 url
               }
-              subtittle
+              slug
+              spanishExcerpt
+              spanishSubtitle
+              spanishTitle
+              spanishContent {
+                markdown
+              }
+              englishContent {
+                markdown
+              }
+              publishedAt
+              createdAt
             }
           }
         }
