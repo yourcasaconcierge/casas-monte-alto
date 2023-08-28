@@ -67,11 +67,13 @@ export const LanguageContext = createContext<LanguageContextProps>({
 });
 
 export const LanguageProvider = ({ children }: any) => {
-  const [language, setLanguage] = useState(
-    typeof window !== 'undefined' &&
-      navigator?.language.toLowerCase().startsWith('es')
+  const languageStorage = localStorage && localStorage.getItem('language');
+  const languageNavigator =
+    navigator && navigator?.language.toLowerCase().startsWith('es')
       ? 'spanish'
-      : 'english'
+      : 'english';
+  const [language, setLanguage] = useState(
+    languageStorage || languageNavigator
   );
   const [nav, setNav] = useState(navigation);
   const [head, setHead] = useState(header);
@@ -82,8 +84,10 @@ export const LanguageProvider = ({ children }: any) => {
   const toggleLanguage = () => {
     if (language === 'english') {
       setLanguage('spanish');
+      localStorage.setItem('language', 'spanish');
     } else {
       setLanguage('english');
+      localStorage.setItem('language', 'english');
     }
   };
 
