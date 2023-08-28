@@ -9,7 +9,7 @@ import { LanguageContext } from '@/context/LanguageContext';
 const Header = () => {
   const { head } = useContext(LanguageContext);
   return (
-    <section className="border-b-2 border-secondary pb-14 lg:pb-32">
+    <section className="border-b-2 border-secondary lg:min-h-screen max-lg:pb-14">
       <LogoSvg hidden />
       <SmallLogoSvg />
       <Image
@@ -27,3 +27,7 @@ const Header = () => {
 };
 
 export default Header;
+
+// pb-14 lg:pb-32
+
+// lg:my-32
