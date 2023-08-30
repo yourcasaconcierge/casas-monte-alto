@@ -1,85 +1,146 @@
 'use client';
 
-import { Inter } from 'next/font/google';
 import { AboutsContext } from '@/context/AboutContext';
+import { Inter } from 'next/font/google';
 import { LanguageContext } from '@/context/LanguageContext';
 import { useContext } from 'react';
 import Animation from './Animation';
 import Image from 'next/image';
+import Loader from '@/app/components/Loader';
 
 const inter = Inter({ subsets: ['latin'] });
 
 const About = () => {
-  const { englishAbout, spanishAbout, loading } = useContext(AboutsContext);
-  const { about } = useContext(LanguageContext);
-  const { section1, section2, section3, section4 } = about;
+  const { about } = useContext(AboutsContext);
+  const { language } = useContext(LanguageContext);
+
+  if (!about) return <Loader className="mt-32" />;
+
+  const {
+    englishHeaderOne,
+    englishHeaderTwo,
+    englishHeaderThree,
+    englishHeaderFour,
+    englishParagraphOne,
+    englishParagraphTwo,
+  } = about;
+  const {
+    spanishHeaderOne,
+    spanishHeaderTwo,
+    spanishHeaderThree,
+    spanishHeaderFour,
+    spanishParagraphOne,
+    spanishParagraphTwo,
+  } = about;
+
+  const { imageOne, imageTwo, imageThree } = about;
+
+  if (!englishParagraphOne) return <Loader className="mt-32" />;
+
+  const section = [
+    {
+      heading:
+        about && language === 'english'
+          ? englishParagraphOne.text?.split('\\n')[0]
+          : spanishParagraphOne.text?.split('\\n')[0],
+      paragraph:
+        about && language === 'english'
+          ? englishParagraphOne.text?.split('\\n')[1]
+          : spanishParagraphOne.text?.split('\\n')[1],
+    },
+    {
+      heading:
+        about && language === 'english'
+          ? englishParagraphTwo.text?.split('\\n')[0]
+          : spanishParagraphTwo.text?.split('\\n')[0],
+      paragraph:
+        about && language === 'english'
+          ? englishParagraphTwo.text?.split('\\n')[1]
+          : spanishParagraphTwo.text?.split('\\n')[1],
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-32">
       <section className="w-full h-screen flex justify-center items-center">
         <h1
           className={`
           ${inter.className}
-        text-2xl md:text-4xl lg:text-5xl xl:text-6xl text-center font-extrabold`}
+        text-3xl md:text-[4.5vw] md:leading-none md:px-10 text-center font-extrabold`}
         >
-          {section1?.line1}
-          <br /> {section1?.line2}
+          {language === 'english' ? englishHeaderOne : spanishHeaderOne}
         </h1>
       </section>
 
-      <section className="max-w-7xl mx-auto lg:h-screen flex flex-col justify-center gap-5 lg:pr-96 max-lg:mb-[50vh]">
+      <section className="max-w-7xl pt-[20vmin] pb-[30vmin]  lg:pr-96 max-lg:mb-[50vh]">
         <Animation reveal>
           <h2
             className={`
         ${inter.className}
         text-2xl lg:text-5xl font-bold`}
           >
-            {section2?.heading}
+            {language === 'english' ? englishHeaderTwo : spanishHeaderTwo}
           </h2>
-          <p className="text-lg lg:text-2xl">{section2?.paragraph}</p>
         </Animation>
       </section>
 
-      <section className="w-full lg:h-screen flex max-lg:flex-col lg:justify-between gap-14 lg:gap-32 max-lg:mb-[50vh]">
+      <section>
         <Animation slidingImage left>
           <Image
-            src="https://images.unsplash.com/photo-1692401885962-0d29dcdf5fba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2029&q=80"
+            src={imageOne?.url}
             alt="Change this"
             width={2029}
             height={1353}
-            className="w-full h-[350px] lg:h-[593px] bg-secondary"
+            className="w-full max-w-3xl h-[350px] lg:h-[593px] bg-secondary object-cover"
           />
         </Animation>
+      </section>
+
+      <section className="max-w-7xl pt-[20vmin] pb-[30vmin] flex items-center lg:pr-96">
+        <Animation reveal>
+          <h3
+            className={`
+            ${inter.className}
+            text-2xl lg:text-5xl font-bold`}
+          >
+            {language === 'english' ? englishHeaderThree : spanishHeaderThree}
+          </h3>
+        </Animation>
+      </section>
+
+      <section>
         <Animation slidingImage>
           <Image
-            src="https://images.unsplash.com/photo-1692401885962-0d29dcdf5fba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2029&q=80"
+            src={imageTwo?.url}
             alt="Change this"
             width={2029}
             height={1353}
-            className="w-full h-[350px] lg:h-[593px] bg-secondary lg:mt-52"
+            className="w-full max-w-3xl h-[350px] lg:h-[593px] bg-secondary object-cover float-right"
           />
         </Animation>
       </section>
 
-      <section className="max-w-7xl mx-auto w-full lg:h-screen flex items-center lg:pr-96 max-lg:mb-[50vh]">
-        <Animation reveal>
-          <p className="text-2xl lg:text-3xl">{section3?.paragraph}</p>
-        </Animation>
-      </section>
-
-      <section className="relative lg:h-screen max-lg:mb-[50vh]">
+      <section className="relative lg:h-screen max-lg:mb-[50vh] lg:mt-32">
+        <h4
+          className={`
+          ${inter.className}
+          text-3xl md:text-[4.5vw] md:leading-none font-bold text-center lg:-mb-20`}
+        >
+          {language === 'english' ? englishHeaderFour : spanishHeaderFour}
+        </h4>
         <Animation scale>
           <Image
-            src="https://images.unsplash.com/photo-1578010908802-cd7e5cd853c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            src={imageThree?.url}
             alt="Change this"
-            width={2070}
-            height={1380}
+            width={1148}
+            height={700}
             className="object-cover w-full h-[500px] lg:h-[1000px]"
           />
         </Animation>
       </section>
       <section>
-        {section4?.map((section, index) => (
-          <SubSection key={index} section={section} />
+        {section?.map((section, index) => (
+          <SubSection key={index} data={section} />
         ))}
       </section>
     </div>
@@ -89,24 +150,26 @@ const About = () => {
 export default About;
 
 const SubSection = ({
-  section,
+  data,
 }: {
-  section: { heading: string; paragraph: string };
+  data: { heading: string; paragraph: string };
 }) => {
   return (
-    <div className="max-w-7xl mx-auto w-full lg:min-h-screen flex justify-center items-center text-2xl lg:pr-96 max-lg:mb-[50vh]">
-      <div className="flex flex-col gap-5">
-        <Animation reveal>
+    <Animation reveal>
+      <div className="max-w-7xl pt-[20vmin] pb-[30vmin] justify-center items-center xl:pr-96 max-lg:mb-[50vh]">
+        <div className="flex flex-col gap-5 text-4xl lg:text-7xl">
           <h3
             className={`
             ${inter.className}
-            text-3xl lg:text-5xl font-bold`}
+            font-bold`}
           >
-            {section.heading}
+            {data.heading}
           </h3>
-          <p className="text-lg lg:text-2xl">{section.paragraph}</p>
-        </Animation>
+          <p className="text-[60%] lg:text-[35%] leading-normal lg:pr-56">
+            {data.paragraph}
+          </p>
+        </div>
       </div>
-    </div>
+    </Animation>
   );
 };

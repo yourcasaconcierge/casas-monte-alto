@@ -12,7 +12,7 @@ module.exports = {
           DEFAULT: '#fff',
         },
         secondary: {
-          DEFAULT: '#353535',
+          DEFAULT: '#000',
         },
         accent: {
           DEFAULT: '#',

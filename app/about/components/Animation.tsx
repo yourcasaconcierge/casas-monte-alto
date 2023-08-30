@@ -26,11 +26,9 @@ const Animation = ({
     if (isInView) {
       mainControls.start('visible');
     }
-
-    console.log(isInView);
   }, [isInView, mainControls]);
   return (
-    <div ref={ref} className="">
+    <div ref={ref}>
       {reveal && (
         <m.div
           variants={{
@@ -39,7 +37,7 @@ const Animation = ({
           }}
           initial="hidden"
           animate={mainControls}
-          transition={{ duration: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
           className="relative overflow-hidden"
         >
           {children}
@@ -54,7 +52,7 @@ const Animation = ({
           }}
           initial="hidden"
           animate={mainControls}
-          transition={{ duration: 1.5 }}
+          transition={{ duration: 1 }}
         >
           {children}
         </m.div>
@@ -68,7 +66,7 @@ const Animation = ({
           }}
           initial="hidden"
           animate={mainControls}
-          transition={{ duration: 1.5 }}
+          transition={{ duration: 1 }}
         >
           {children}
         </m.div>

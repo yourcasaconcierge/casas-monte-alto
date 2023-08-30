@@ -14,7 +14,6 @@ const EntryPreview = ({ slug, title, excerpt, image }: EntryPreview) => {
           src={image}
           className="bg-secondary w-full aspect-square object-cover"
           alt={title as string}
-          layout="responsive"
           width={500}
           height={500}
         />

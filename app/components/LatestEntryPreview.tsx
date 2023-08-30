@@ -12,6 +12,7 @@ const LatestEntryPreview = ({ slug, title, excerpt, image }: EntryPreview) => {
           alt={title as string}
           width={1631}
           height={918}
+          priority
         />
         <div className="lg:flex gap-2 items-center">
           <p>Entry </p>

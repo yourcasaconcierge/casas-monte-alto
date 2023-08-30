@@ -13,14 +13,36 @@ export async function GET(req: Request) {
         aboutsConnection {
           edges {
             node {
-              spanish {
+              englishHeaderFour
+              englishHeaderOne
+              englishHeaderThree
+              englishHeaderTwo
+              englishParagraphOne {
                 text
               }
-              english {
+              englishParagraphTwo {
                 text
               }
               id
-              publishedAt
+              imageThree {
+                url
+              }
+              imageOne {
+                url
+              }
+              imageTwo {
+                url
+              }
+              spanishHeaderFour
+              spanishHeaderOne
+              spanishHeaderThree
+              spanishHeaderTwo
+              spanishParagraphOne {
+                text
+              }
+              spanishParagraphTwo {
+                text
+              }
             }
           }
         }

@@ -32,7 +32,7 @@ const Journal = () => {
               width={1000}
               height={650}
             />
-            <div>
+            <div className="max-w-[796.63px]">
               <p>{language === 'english' ? 'Entry' : 'Entrada'}</p>
               <p className="font-bold text-sm lg:text-lg">
                 {language === 'english'

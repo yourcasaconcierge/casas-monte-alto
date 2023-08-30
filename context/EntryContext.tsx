@@ -23,7 +23,6 @@ export const EntryProvider = ({ children }: any) => {
       try {
         setLoading(true);
         const response = await axios.get('/api/journal/entries');
-        console.log('data', response.data);
         const filterEntriesByDate = response.data.entries.sort(
           (a: any, b: any) => {
             return (

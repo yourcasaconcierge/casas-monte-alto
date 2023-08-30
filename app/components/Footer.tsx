@@ -2,13 +2,28 @@
 
 import { BsArrowUpRight } from 'react-icons/bs';
 import { LanguageContext } from '@/context/LanguageContext';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import LogoSvg from './LogoSvg';
+import ImageLoader from './ImageLoader';
 
 const Footer = () => {
   const { foot } = useContext(LanguageContext);
+  const [image, setImage] = useState(null);
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+  useEffect(() => {
+    const fetchImage = async () => {
+      const res = await axios.get('/api/landing');
+      setImage(res.data.footerImages[0].node.image.url);
+      setWidth(res.data.footerImages[0].node.image.width);
+      setHeight(res.data.footerImages[0].node.image.height);
+    };
+
+    fetchImage();
+  }, []);
   return (
     <footer className="layout pb-10 lg:pb-5 justify-end max-sm:text-[0.6rem]">
       <div className="py-8 border-t-2 border-secondary">
@@ -20,13 +35,17 @@ const Footer = () => {
           <BsArrowUpRight className="inline-block pb-1 group-hover:rotate-45 duration-200" />
         </Link>
       </div>
-      <Image
-        src="https://images.unsplash.com/photo-1668585418249-f87c0f926583?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-        alt="villa"
-        className="bg-secondary w-full h-[300px] lg:h-[500px] object-cover"
-        width={1170}
-        height={600}
-      />
+      {!image ? (
+        <ImageLoader />
+      ) : (
+        <Image
+          src={image}
+          alt="villa"
+          className="bg-secondary w-full h-[300px] lg:h-[500px] object-cover"
+          width={width}
+          height={height}
+        />
+      )}
       <LogoSvg />
       <div className="flex justify-between">
         <p>{foot?.line1}</p>
