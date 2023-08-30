@@ -157,7 +157,7 @@ const SubSection = ({
   return (
     <Animation reveal>
       <div className="max-w-7xl pt-[20vmin] pb-[30vmin] justify-center items-center xl:pr-96 max-lg:mb-[50vh]">
-        <div className="flex flex-col gap-5 text-4xl lg:text-7xl">
+        <div className="flex flex-col gap-5 text-3xl lg:text-7xl">
           <h3
             className={`
             ${inter.className}
@@ -165,7 +165,7 @@ const SubSection = ({
           >
             {data.heading}
           </h3>
-          <p className="text-[60%] lg:text-[35%] leading-normal lg:pr-56">
+          <p className="text-[55%] lg:text-[35%] leading-normal lg:pr-56">
             {data.paragraph}
           </p>
         </div>
