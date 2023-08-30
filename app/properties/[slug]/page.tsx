@@ -61,8 +61,8 @@ const ProperyPage = (props: any) => {
           <Image
             src={property.images[0].url}
             alt={property.propertyName}
-            className="object-cover w-full h-[30vh] lg:h-[80vh]"
-            width={1920}
+            className="object-cover w-full h-[30vh] lg:h-[500px]"
+            width={1280}
             height={1080}
           />
 
