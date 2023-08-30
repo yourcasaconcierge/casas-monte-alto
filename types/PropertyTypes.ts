@@ -3,13 +3,22 @@ export interface PropertyNode {
   propertyName: string;
   publishedAt: string;
   slug: string;
-  description: {
+  englishDescription: {
     text: string;
   };
-  features: {
+  spanishDescription: {
     text: string;
   };
-  amenities: {
+  englishFeatures: {
+    text: string;
+  };
+  spanishFeatures: {
+    text: string;
+  };
+  englishAmenities: {
+    text: string;
+  };
+  spanishAmenities: {
     text: string;
   };
   images: {
@@ -20,6 +29,8 @@ export interface PropertyNode {
   }[];
   bathrooms: number;
   bedrooms: number;
+  postingLink: string;
+  featuresAndAmenitiesLink: string;
 }
 
 export interface Property {
@@ -28,13 +39,22 @@ export interface Property {
     propertyName: string;
     publishedAt: string;
     slug: string;
-    description: {
+    englishDescription: {
       text: string;
     };
-    features: {
+    spanishDescription: {
       text: string;
     };
-    amenities: {
+    englishFeatures: {
+      text: string;
+    };
+    spanishFeatures: {
+      text: string;
+    };
+    englishAmenities: {
+      text: string;
+    };
+    spanishAmenities: {
       text: string;
     };
     images: {
@@ -45,5 +65,7 @@ export interface Property {
     }[];
     bathrooms: number;
     bedrooms: number;
+    postingLink: string;
+    featuresAndAmenitiesLink: string;
   };
 }

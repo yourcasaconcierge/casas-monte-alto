@@ -15,7 +15,7 @@ const Journal = () => {
   return (
     <section>
       <h3 className="text-center text-xl capitalize mb-14">{nav?.journal}</h3>
-      <div className="flex max-lg:flex-col justify-between gap-32">
+      <div className="flex max-lg:flex-col justify-between gap-20 lg:gap-32">
         {entries?.map((entry, index) => (
           <Link
             href={`/journal/entry/${entry.node.slug}`}
@@ -33,11 +33,16 @@ const Journal = () => {
               height={650}
             />
             <div>
-              <p>Entry </p>
-              <p className="font-medium text-sm lg:text-lg">
+              <p>{language === 'english' ? 'Entry' : 'Entrada'}</p>
+              <p className="font-bold text-sm lg:text-lg">
                 {language === 'english'
                   ? entry.node?.englishTitle
                   : entry.node?.spanishTitle}
+              </p>
+              <p className="text-sm lg:text-lg line-clamp-1">
+                {language === 'english'
+                  ? entry.node?.englishExcerpt
+                  : entry.node?.spanishExcerpt}
               </p>
             </div>
           </Link>

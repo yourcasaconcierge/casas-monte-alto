@@ -20,7 +20,7 @@ const EntryPreview = ({ slug, title, excerpt, image }: EntryPreview) => {
         />
         <div className="items-center">
           <p>Entry </p>
-          <p className="font-medium text-sm lg:text-[1.04rem]">{title}</p>
+          <p className="font-bold text-sm lg:text-[1.04rem]">{title}</p>
         </div>
       </Link>
       <article className="line-clamp-1">{excerpt}</article>

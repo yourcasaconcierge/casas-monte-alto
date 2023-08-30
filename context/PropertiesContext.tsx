@@ -23,7 +23,7 @@ export const PropertiesProvider = ({ children }: any) => {
       try {
         setLoading(true);
         const response = await axios.get('/api/properties');
-        console.log('data', response.data);
+        console.log('properties', response.data);
         const filterPropertiesByDate = response.data.properties.sort(
           (a: any, b: any) => {
             return (

@@ -3,15 +3,16 @@
 import { EntryContext } from '@/context/EntryContext';
 import { EntryNode } from '@/types/EntryTypes';
 import { Inter } from 'next/font/google';
+import { LanguageContext } from '@/context/LanguageContext';
 import { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Markdown from 'markdown-to-jsx';
-import { LanguageContext } from '@/context/LanguageContext';
+import Loader from '@/app/components/Loader';
 
 const inter = Inter({ subsets: ['latin'] });
 
 const EntryPage = (props: any) => {
-  const { entries, loading } = useContext(EntryContext);
+  const { entries } = useContext(EntryContext);
   const { language } = useContext(LanguageContext);
   const [entry, setEntry] = useState<EntryNode>();
   useEffect(() => {
@@ -24,9 +25,7 @@ const EntryPage = (props: any) => {
   return (
     <main className="layout max-lg:mt-32 mb-32 flex flex-col items-center">
       {!entry ? (
-        <div>
-          <h1 className="text-5xl font-bold">Loading...</h1>
-        </div>
+        <Loader />
       ) : (
         <>
           <section className="flex flex-col lg:flex-row-reverse lg:justify-between gap-5 max-xl:pb-5 w-full lg:h-screen border-b-2 border-secondary">
@@ -37,8 +36,8 @@ const EntryPage = (props: any) => {
               width={1470}
               height={800}
             />
-            <div className="flex flex-col gap-5 lg:justify-end lg:mb-14">
-              <h2>
+            <div className="flex max-lg:flex-col-reverse flex-col gap-5 lg:justify-end lg:mb-14 max-md:text-center">
+              <h2 className="text-lg font-semibold">
                 <div>
                   {language === 'english'
                     ? entry?.englishSubtitle

@@ -15,7 +15,7 @@ const LatestEntryPreview = ({ slug, title, excerpt, image }: EntryPreview) => {
         />
         <div className="lg:flex gap-2 items-center">
           <p>Entry </p>
-          <p className="font-medium text-sm lg:text-lg">{title}</p>
+          <p className="font-bold text-sm lg:text-lg">{title}</p>
         </div>
       </Link>
       <article className="line-clamp-1">{excerpt}</article>

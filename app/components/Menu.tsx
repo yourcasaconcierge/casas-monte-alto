@@ -1,9 +1,9 @@
 'use client';
 
+import { LanguageContext } from '@/context/LanguageContext';
 import { motion as m } from 'framer-motion';
 import { useAnimate, stagger } from 'framer-motion';
-import { useEffect } from 'react';
-
+import { useContext, useEffect } from 'react';
 import Link from 'next/link';
 
 const staggerMenuItems = stagger(0.1, { startDelay: 0.2 });
@@ -14,6 +14,7 @@ interface MenuProps {
 }
 
 const Menu = ({ open, toggle }: MenuProps) => {
+  const { nav } = useContext(LanguageContext);
   const [scope, animate] = useAnimate();
 
   useEffect(() => {
@@ -49,16 +50,16 @@ const Menu = ({ open, toggle }: MenuProps) => {
     >
       <ul ref={scope} className="flex flex-col gap-5 text-3xl text-center">
         <li onClick={toggle}>
-          <Link href="/about">About</Link>
+          <Link href="/about">{nav?.about}</Link>
         </li>
         <li onClick={toggle}>
-          <Link href="/journal/entries">Journal</Link>
+          <Link href="/journal/entries">{nav?.journal}</Link>
         </li>
         <li onClick={toggle}>
-          <Link href="/properties">Properties</Link>
+          <Link href="/properties">{nav?.properties}</Link>
         </li>
         <li onClick={toggle}>
-          <Link href="/contact">Contact</Link>
+          <Link href="/contact">{nav?.contact}</Link>
         </li>
       </ul>
     </m.div>

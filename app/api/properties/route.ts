@@ -13,27 +13,35 @@ export async function GET(req: Request) {
         propertiesConnection {
           edges {
             node {
+              bathrooms
+              bedrooms
+              createdAt
               id
-              propertyName
-              publishedAt
               slug
-              description {
+              englishAmenities {
                 text
               }
-              features {
+              englishDescription {
                 text
               }
-              amenities {
+              englishFeatures {
+                text
+              }
+              propertyName
+              spanishAmenities {
+                text
+              }
+              spanishDescription {
+                text
+              }
+              spanishFeatures {
                 text
               }
               images {
-                id
                 url
-                height
-                width
               }
-              bathrooms
-              bedrooms
+              featuresAndAmenitiesLink
+              postingLink
             }
           }
         }

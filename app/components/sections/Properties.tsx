@@ -16,17 +16,21 @@ import 'swiper/css';
 import 'swiper/css/scrollbar';
 
 const Properties = () => {
-  const { nav } = useContext(LanguageContext);
+  const { language, nav } = useContext(LanguageContext);
   const { properties } = useContext(PropertiesContext);
 
   const comingSoonArray = [
     {
-      header: 'Coming Soon',
-      text: 'More properties coming soon',
+      englishHeader: 'Coming Soon',
+      englishText: 'More properties coming soon',
+      spanishHeader: 'Próximamente',
+      spanishText: 'Más propiedades próximamente',
     },
     {
-      header: 'Coming Soon',
-      text: 'More properties coming soon',
+      englishHeader: 'Coming Soon',
+      englishText: 'More properties coming soon',
+      spanishHeader: 'Próximamente',
+      spanishText: 'Más propiedades próximamente',
     },
   ];
 
@@ -81,7 +85,9 @@ const Properties = () => {
                   {property.node.propertyName}
                 </h3>
                 <p className="max-lg:text-sm line-clamp-1">
-                  {property.node.description.text}
+                  {language === 'english'
+                    ? property.node.englishDescription.text
+                    : property.node.spanishDescription.text}
                 </p>
               </div>
             </article>
@@ -92,8 +98,16 @@ const Properties = () => {
           comingSoonArray.map((property, index) => (
             <SwiperSlide key={index}>
               <ComingSoonTemplate
-                header={property.header}
-                text={property.text}
+                header={
+                  language === 'english'
+                    ? property.englishHeader
+                    : property.spanishHeader
+                }
+                text={
+                  language === 'english'
+                    ? property.englishText
+                    : property.spanishText
+                }
               />
             </SwiperSlide>
           ))}

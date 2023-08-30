@@ -2,7 +2,7 @@
 
 import { Inter } from 'next/font/google';
 import { LanguageContext } from '@/context/LanguageContext';
-import { Suspense, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import Link from 'next/link';
 import Menu from './Menu';
 import LanguageButton from './LanguageButton';
@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState('close');
-  const { language, nav, toggleLanguage } = useContext(LanguageContext);
+  const { nav } = useContext(LanguageContext);
   const toggleMenu = () => {
     isOpen === 'close' ? setIsOpen('open') : setIsOpen('close');
   };
@@ -38,11 +38,10 @@ const Nav = () => {
           </Link>
 
           <div className="flex gap-5">
-            <Suspense fallback={<div>Loading...</div>}>
-              <ClientOnly>
-                <LanguageButton />
-              </ClientOnly>
-            </Suspense>
+            <ClientOnly>
+              <LanguageButton />
+            </ClientOnly>
+
             <Link
               href="/properties"
               className="hidden lg:block w-[105.06px] text-center"

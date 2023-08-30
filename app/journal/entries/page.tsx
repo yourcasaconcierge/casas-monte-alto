@@ -5,6 +5,7 @@ import { LanguageContext } from '@/context/LanguageContext';
 import { useContext } from 'react';
 import EntryPreview from '@/app/components/EntryPreview';
 import LatestEntryPreview from '@/app/components/LatestEntryPreview';
+import Loader from '@/app/components/Loader';
 
 const EntriesPage = () => {
   const { entries, loading } = useContext(EntryContext);
@@ -15,7 +16,7 @@ const EntriesPage = () => {
   return (
     <main className="layout my-32">
       {loading ? (
-        <p>Loading...</p>
+        <Loader />
       ) : (
         <>
           {firstEntry && (

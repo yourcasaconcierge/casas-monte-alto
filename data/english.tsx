@@ -1,8 +1,8 @@
 const navigation = {
-  about: 'about',
-  journal: 'journal',
-  contact: 'contact',
-  properties: 'properties',
+  about: 'About',
+  journal: 'Journal',
+  contact: 'Contact',
+  properties: 'Properties',
 };
 
 const header = {

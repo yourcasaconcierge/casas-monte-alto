@@ -1,20 +1,36 @@
 'use client';
 
+import { LanguageContext } from '@/context/LanguageContext';
 import { PropertiesContext } from '@/context/PropertiesContext';
 import { PropertyNode } from '@/types/PropertyTypes';
 import { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Modal from '@/app/components/Modal';
+import Loader from '@/app/components/Loader';
 
 const ProperyPage = (props: any) => {
   const [modal, setModal] = useState(false);
   const [property, setProperty] = useState<PropertyNode>();
   const [src, setSrc] = useState('');
   const { properties } = useContext(PropertiesContext);
+  const { language } = useContext(LanguageContext);
   const slug = props.params.slug;
-  const featuresArray = property?.features.text.split('\\n').slice(0, -1);
-  const amenitiesArray = property?.amenities.text.split('\\n').slice(0, -1);
+  const featuresArray = (language: string) => {
+    if (language === 'english') {
+      return property?.englishFeatures.text.split('\\n').slice(0, -1);
+    } else {
+      return property?.spanishFeatures.text.split('\\n').slice(0, -1);
+    }
+  };
+
+  const amenitiesArray = (language: string) => {
+    if (language === 'english') {
+      return property?.englishAmenities.text.split('\\n').slice(0, -1);
+    } else {
+      return property?.spanishAmenities.text.split('\\n').slice(0, -1);
+    }
+  };
 
   useEffect(() => {
     const foundProperty = properties.find(
@@ -26,17 +42,21 @@ const ProperyPage = (props: any) => {
   return (
     <main className="my-32 layout lg:text-lg flex flex-col gap-10">
       {!property ? (
-        <div>
-          <h1 className="">Loading...</h1>
-        </div>
+        <Loader />
       ) : (
         <>
           <h1 className="text-3xl lg:text-5xl uppercase">
             {property.propertyName}
           </h1>
-          <div className=" lg:flex gap-5 lg:text-2xl">
-            <p>Bedroom(s): {property.bedrooms}</p>
-            <p>BathRoom(s): {property.bathrooms}</p>
+          <div className="lg:flex gap-5 lg:text-2xl">
+            <p>
+              {language === 'english' ? 'Bedroom(s)' : 'Dormitorio(s)'}:{' '}
+              {property.bedrooms}
+            </p>
+            <p>
+              {language === 'english' ? 'Bathroom(s)' : 'Baño(s)'}:{' '}
+              {property.bathrooms}
+            </p>
           </div>
           <Image
             src={property.images[0].url}
@@ -68,42 +88,53 @@ const ProperyPage = (props: any) => {
               );
             })}
           </div>
-          <p>{property.description.text}</p>
+          <p>
+            {language === 'english'
+              ? property.englishDescription.text
+              : property.spanishDescription.text}
+          </p>
 
-          <h2 className="text-xl lg:text-3xl">Features</h2>
+          <h2 className="text-xl lg:text-3xl">
+            {language === 'english' ? 'Features' : 'Características'}
+          </h2>
 
           {featuresArray && (
             <ul className="list-disc pl-10 ">
-              {featuresArray.map((feature, index) => (
+              {featuresArray(language)?.map((feature, index) => (
                 <li key={index}>{feature}</li>
               ))}
             </ul>
           )}
 
           <h2 className="text-xl lg:text-3xl">
-            Amenities <span className="text-lg">(included)</span>
+            {language === 'english' ? 'Amenities' : 'Servicios'}{' '}
+            <span className="text-lg">
+              {language === 'english' ? '(included)' : '(incluidos)'}
+            </span>
           </h2>
 
           {amenitiesArray && (
             <ul className="list-disc pl-10 ">
-              {amenitiesArray.map((amenity, index) => (
+              {amenitiesArray(language)?.map((amenity, index) => (
                 <li key={index}>{amenity}</li>
               ))}
             </ul>
           )}
 
           <Link
-            href="https://airbnb.com/h/mendozaindependencia"
+            href={property.featuresAndAmenitiesLink}
             className="underline hover:no-underline"
           >
-            View full listing for features and amenities
+            {language === 'english'
+              ? 'View full listing for features and amenities'
+              : 'Ver listado completo de características y servicios'}
           </Link>
           <div className="flex justify-center mt-10">
             <Link
-              href="https://airbnb.com/h/mendozaindependencia"
+              href={property.postingLink}
               className="bg-secondary text-primary px-5 py-3 text-lg inline-block"
             >
-              Book Now
+              {language === 'english' ? 'Book Now' : 'Reservar'}
             </Link>
           </div>
         </>
