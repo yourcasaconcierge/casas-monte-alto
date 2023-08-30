@@ -1,5 +1,10 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import ContactPageContainer from './components/ContactPageContainer';
+
+export const metadata: Metadata = {
+  title: 'Contact Us',
+};
 
 const ContactPage = () => {
   return (

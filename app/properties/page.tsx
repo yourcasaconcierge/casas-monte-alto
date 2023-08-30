@@ -1,4 +1,9 @@
+import type { Metadata } from 'next';
 import PropertyPreview from '../components/PropertyPreview';
+
+export const metadata: Metadata = {
+  title: 'Properties',
+};
 
 const page = () => {
   return (

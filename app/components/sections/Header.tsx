@@ -20,7 +20,7 @@ const Header = () => {
         height={600}
       />
       <h2 className="mt-5 max-sm:text-sm lg:text-lg">
-        {head?.line1} <br /> {head?.line2}
+        {head?.line1} {head?.line2}
       </h2>
     </section>
   );
