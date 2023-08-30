@@ -25,7 +25,7 @@ const Footer = () => {
     fetchImage();
   }, []);
   return (
-    <footer className="layout pb-10 lg:pb-5 justify-end max-sm:text-[0.6rem]">
+    <footer className="layout pb-5 justify-end max-sm:text-[0.6rem]">
       <div className="py-8 border-t-2 border-secondary">
         <Link
           href="https://www.instagram.com/casasmontealto/"
