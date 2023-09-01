@@ -7,12 +7,12 @@ const EntryPreview = ({ slug, title, excerpt, image }: EntryPreview) => {
     <div
       key={slug}
       className={`
-      flex flex-col relative col-span-2 lg:col-span-1`}
+      flex flex-col relative col-span-2 lg:col-span-1 `}
     >
       <Link href={`/journal/entry/${slug}`} className="flex flex-col gap-3">
         <Image
           src={image}
-          className="bg-secondary w-full aspect-square object-cover"
+          className="bg-secondary w-full aspect-square max-lg:aspect-video object-cover max-lg:max-h-[500px]"
           alt={title as string}
           width={500}
           height={500}
