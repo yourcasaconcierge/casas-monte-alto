@@ -25,7 +25,7 @@ const Header = () => {
   }, []);
 
   return (
-    <section className="border-b-2 border-secondary lg:min-h-screen max-lg:pb-8">
+    <section className="lg:min-h-screen max-lg:pb-8">
       <LogoSvg hidden />
       <SmallLogoSvg />
       {!image ? (
@@ -39,7 +39,7 @@ const Header = () => {
           height={height}
         />
       )}
-      <h2 className="mt-5 max-sm:text-sm lg:text-lg">
+      <h2 className="py-5 text-sm md:text-lg 2xl:text-xl border-b-2 border-secondary">
         {head?.line1} <br className="max-md:hidden" /> {head?.line2}
       </h2>
     </section>
