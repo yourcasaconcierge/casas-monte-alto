@@ -34,7 +34,7 @@ const Header = () => {
         <Image
           src={image}
           alt="villa"
-          className="bg-secondary w-full h-[300px] xl:h-[450px] object-cover object-bottom"
+          className="bg-secondary w-full h-[300px] 2xl:h-[450px] object-cover object-bottom"
           width={width}
           height={height}
         />

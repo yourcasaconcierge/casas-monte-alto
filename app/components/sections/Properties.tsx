@@ -58,7 +58,7 @@ const Properties = () => {
   const router = useRouter();
   return (
     <section id="properties">
-      <h2 className="text-3xl lg:text-4xl 2xl:text-5xl mb-5 capitalize">
+      <h2 className="text-3xl 2xl:text-5xl mb-5 capitalize">
         {nav?.properties}
       </h2>
       <Swiper
@@ -76,15 +76,15 @@ const Properties = () => {
               <Image
                 src={property.node.images[0].url}
                 alt={property.node.propertyName}
-                className="object-cover w-full h-[40vh] lg:h-[65vh] 2xl:h-[80vh]"
+                className="object-cover w-full h-[40vh] lg:h-[60vh] 2xl:h-[80vh]"
                 width={1920}
                 height={1080}
               />
               <div className="flex flex-col gap-2 py-5">
-                <h3 className="text-lg lg:text-2xl">
+                <h3 className="text-lg 2xl:text-2xl">
                   {property.node.propertyName}
                 </h3>
-                <p className="max-lg:text-sm line-clamp-1">
+                <p className="text-xs lg:text-sm line-clamp-1">
                   {language === 'english'
                     ? property.node.englishDescription.text
                     : property.node.spanishDescription.text}

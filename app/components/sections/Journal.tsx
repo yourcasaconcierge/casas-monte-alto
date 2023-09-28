@@ -34,12 +34,12 @@ const Journal = () => {
             />
             <div className="max-w-[796.63px]">
               <p>{language === 'english' ? 'Entry' : 'Entrada'}</p>
-              <p className="font-bold text-sm lg:text-lg">
+              <p className="font-bold text-sm 2xl:text-lg">
                 {language === 'english'
                   ? entry.node?.englishTitle
                   : entry.node?.spanishTitle}
               </p>
-              <p className="text-sm lg:text-lg line-clamp-1">
+              <p className="text-sm 2xl:text-lg line-clamp-1">
                 {language === 'english'
                   ? entry.node?.englishExcerpt
                   : entry.node?.spanishExcerpt}
