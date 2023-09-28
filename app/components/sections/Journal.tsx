@@ -15,7 +15,7 @@ const Journal = () => {
   return (
     <section>
       <h3 className="text-center text-xl capitalize mb-14">{nav?.journal}</h3>
-      <div className="flex max-lg:flex-col justify-between gap-20 lg:gap-32">
+      <div className="flex max-lg:flex-col justify-between gap-20 lg:gap-32 w-full">
         {entries?.map((entry, index) => (
           <Link
             href={`/journal/entry/${entry.node.slug}`}

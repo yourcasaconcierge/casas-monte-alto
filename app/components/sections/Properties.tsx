@@ -58,7 +58,7 @@ const Properties = () => {
   const router = useRouter();
   return (
     <section id="properties">
-      <h2 className="text-3xl lg:text-5xl mb-5 capitalize">
+      <h2 className="text-3xl lg:text-4xl 2xl:text-5xl mb-5 capitalize">
         {nav?.properties}
       </h2>
       <Swiper
@@ -76,7 +76,7 @@ const Properties = () => {
               <Image
                 src={property.node.images[0].url}
                 alt={property.node.propertyName}
-                className="object-cover w-full h-[40vh] lg:h-[80vh]"
+                className="object-cover w-full h-[40vh] lg:h-[65vh] 2xl:h-[80vh]"
                 width={1920}
                 height={1080}
               />
