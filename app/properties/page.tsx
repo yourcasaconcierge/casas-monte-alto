@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 const page = () => {
   return (
-    <main className="my-32 layout">
+    <main className="my-32 layout gap-10 flex flex-wrap flex-grow max-md:justify-center">
       <PropertyPreview />
     </main>
   );

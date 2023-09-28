@@ -1,40 +1,12 @@
 import { NextResponse } from 'next/server';
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import { getClient } from '@/lib/client';
+import { query } from '@/utils/getEntries';
 
-const client = new ApolloClient({
-  uri: process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT as string,
-  cache: new InMemoryCache(),
-});
+const client = getClient();
+
 export async function GET(req: Request) {
   const { data } = await client.query({
-    query: gql`
-      query Entry {
-        entriesConnection {
-          edges {
-            node {
-              englishExcerpt
-              englishSubtitle
-              englishTitle
-              featuredImage {
-                url
-              }
-              publishedAt
-              slug
-              spanishExcerpt
-              spanishSubtitle
-              spanishTitle
-              spanishContent {
-                markdown
-              }
-              createdAt
-              englishContent {
-                markdown
-              }
-            }
-          }
-        }
-      }
-    `,
+    query,
   });
 
   const entries = data.entriesConnection.edges;

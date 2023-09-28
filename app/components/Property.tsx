@@ -71,22 +71,36 @@ const Property = ({ slug }: PropertyProps) => {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5">
             {property.images.map((image, index) => {
               return (
-                <div
-                  key={index}
-                  className="flex flex-col cursor-pointer"
-                  onClick={() => {
-                    setModal(true);
-                    setSrc(image.url);
-                  }}
-                >
-                  <Image
-                    src={image.url}
-                    alt=""
-                    className="object-cover aspect-square"
-                    width={1920}
-                    height={1080}
-                  />
-                </div>
+                <>
+                  {property.images.length > 1 ? (
+                    <div
+                      key={index}
+                      className="flex flex-col cursor-pointer"
+                      onClick={() => {
+                        setModal(true);
+                        setSrc(image.url);
+                      }}
+                    >
+                      <Image
+                        src={image.url}
+                        alt=""
+                        className="object-cover aspect-square"
+                        width={1920}
+                        height={1080}
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-full h-[30vh] lg:h-[500px]">
+                      <Image
+                        src={image.url}
+                        alt=""
+                        className="object-cover aspect-square"
+                        width={1920}
+                        height={1080}
+                      />
+                    </div>
+                  )}
+                </>
               );
             })}
           </div>
@@ -120,6 +134,9 @@ const Property = ({ slug }: PropertyProps) => {
               {amenitiesArray(language)?.map((amenity, index) => (
                 <li key={index}>{amenity}</li>
               ))}
+              <li className="list-none">
+                {language === 'english' ? 'And more!' : 'Y mucho más!'}
+              </li>
             </ul>
           )}
 
