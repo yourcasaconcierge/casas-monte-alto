@@ -16,7 +16,7 @@ html {
   display: none;
 }
 .layout {
-  @apply container mx-auto px-3 2xl:px-5;
+  @apply container mx-auto px-3 lg:px-14 2xl:px-5;
 }
 
 /* MENU STYLES */

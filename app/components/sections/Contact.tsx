@@ -7,7 +7,7 @@ import { useContext } from 'react';
 const Contact = () => {
   const { cont } = useContext(LanguageContext);
   return (
-    <section className="capitalize text-center h-screen w-full flex flex-col items-center justify-center gap-10 text-lg 2xl:text-3xl">
+    <section className="capitalize text-center h-screen w-full flex flex-col items-center justify-center gap-5 text-lg 2xl:text-3xl">
       <h4>{cont?.landing.heading}</h4>
       <Link
         href="/contact"

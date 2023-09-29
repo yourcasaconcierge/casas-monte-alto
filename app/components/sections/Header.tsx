@@ -25,7 +25,7 @@ const Header = () => {
   }, []);
 
   return (
-    <section className="lg:min-h-screen max-lg:pb-8">
+    <section className="max-lg:pb-8">
       <LogoSvg hidden />
       <SmallLogoSvg />
       {!image ? (
