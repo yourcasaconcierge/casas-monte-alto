@@ -41,7 +41,7 @@ const Footer = () => {
         <Image
           src={image}
           alt="villa"
-          className="bg-secondary w-full h-[300px] 2xl:h-[450px] object-cover"
+          className="w-full h-[300px] 2xl:h-[450px] object-cover"
           width={width}
           height={height}
         />
