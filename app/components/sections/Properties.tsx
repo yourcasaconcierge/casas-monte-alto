@@ -94,8 +94,8 @@ const Properties = ({ data }: PropertiesProps) => {
                 </h3>
                 <p className="text-xs lg:text-sm line-clamp-1">
                   {language === 'english'
-                    ? property.node.englishDescription.text
-                    : property.node.spanishDescription.text}
+                    ? property.node.englishDescription.markdown
+                    : property.node.spanishDescription.markdown}
                 </p>
               </div>
             </article>
