@@ -1,20 +1,28 @@
 'use client';
 
-import { PropertiesContext } from '@/context/PropertiesContext';
-import { useContext } from 'react';
+import { Property } from '@/types/PropertyTypes';
 import Image from 'next/image';
 import Link from 'next/link';
 import Loader from './Loader';
 
-const PropertyPreview = () => {
-  const { properties } = useContext(PropertiesContext);
+interface PropertyPreviewProps {
+  data: Property[];
+}
+
+const PropertyPreview = ({ data }: PropertyPreviewProps) => {
+  data.sort((a: any, b: any) => {
+    return (
+      new Date(b.node.publishedAt).getTime() -
+      new Date(a.node.publishedAt).getTime()
+    );
+  });
   return (
     <>
-      {!properties ? (
+      {!data ? (
         <Loader />
       ) : (
         <>
-          {properties.map((property, index) => (
+          {data.map((property, index) => (
             <Link
               href={`/properties/${property.node.slug}`}
               key={index}

@@ -1,8 +1,5 @@
 import type { Metadata } from 'next';
-import { AboutsProvider } from '@/context/AboutContext';
-import { EntryProvider } from '@/context/EntryContext';
 import { LanguageProvider } from '@/context/LanguageContext';
-import { PropertiesProvider } from '@/context/PropertiesContext';
 import { Roboto_Mono } from 'next/font/google';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
@@ -45,12 +42,8 @@ export default function RootLayout({
         <LanguageProvider>
           <Nav />
           <Scrollbars />
-          <AboutsProvider>
-            <PropertiesProvider>
-              <EntryProvider>{children}</EntryProvider>
-            </PropertiesProvider>
-            <Footer />
-          </AboutsProvider>
+          {children}
+          <Footer />
         </LanguageProvider>
       </body>
     </html>

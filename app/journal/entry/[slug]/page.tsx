@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getEntries } from '@/utils/getEntries';
 import Entry from '@/app/components/Entry';
 
 type Params = {
@@ -21,10 +22,11 @@ export async function generateMetadata({
   };
 }
 
-const EntryPage = (props: Params) => {
+const EntryPage = async (props: Params) => {
+  const data = await getEntries();
   return (
     <main>
-      <Entry slug={props.params.slug} />
+      <Entry slug={props.params.slug} data={data} />
     </main>
   );
 };

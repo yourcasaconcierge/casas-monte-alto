@@ -1,23 +1,23 @@
 'use client';
 
 import { LanguageContext } from '@/context/LanguageContext';
-import { PropertiesContext } from '@/context/PropertiesContext';
-import { PropertyNode } from '@/types/PropertyTypes';
+import { Property, PropertyNode } from '@/types/PropertyTypes';
 import { useContext, useEffect, useState } from 'react';
 import Loader from './Loader';
 import Image from 'next/image';
 import Link from 'next/link';
 import Modal from './Modal';
+import Markdown from 'markdown-to-jsx';
 
 interface PropertyProps {
   slug: string;
+  data: Property[];
 }
 
-const Property = ({ slug }: PropertyProps) => {
+const Property = ({ slug, data }: PropertyProps) => {
   const [modal, setModal] = useState(false);
   const [property, setProperty] = useState<PropertyNode>();
   const [src, setSrc] = useState('');
-  const { properties } = useContext(PropertiesContext);
   const { language } = useContext(LanguageContext);
   const featuresArray = (language: string) => {
     if (language === 'english') {
@@ -36,11 +36,9 @@ const Property = ({ slug }: PropertyProps) => {
   };
 
   useEffect(() => {
-    const foundProperty = properties.find(
-      property => property.node.slug === slug
-    );
+    const foundProperty = data.find(property => property.node.slug === slug);
     foundProperty && setProperty(foundProperty.node);
-  }, [properties, slug]);
+  }, [data, slug]);
   return (
     <div className="my-32 layout lg:text-lg flex flex-col gap-10">
       {!property ? (
@@ -72,43 +70,36 @@ const Property = ({ slug }: PropertyProps) => {
             {property.images.map((image, index) => {
               return (
                 <>
-                  {property.images.length > 1 ? (
-                    <div
-                      key={index}
-                      className="flex flex-col cursor-pointer"
-                      onClick={() => {
-                        setModal(true);
-                        setSrc(image.url);
+                  <div
+                    key={index}
+                    className="flex flex-col cursor-pointer"
+                    onClick={() => {
+                      setModal(true);
+                      setSrc(image.url);
+                    }}
+                  >
+                    <Image
+                      src={image.url}
+                      alt="Room(s)"
+                      className="object-cover aspect-square bg-neutral-500 animate animate-pulse"
+                      onLoadingComplete={image => {
+                        image.classList.remove('animate-pulse');
                       }}
-                    >
-                      <Image
-                        src={image.url}
-                        alt=""
-                        className="object-cover aspect-square"
-                        width={1920}
-                        height={1080}
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-full h-[30vh] lg:h-[500px]">
-                      <Image
-                        src={image.url}
-                        alt=""
-                        className="object-cover aspect-square"
-                        width={1920}
-                        height={1080}
-                      />
-                    </div>
-                  )}
+                      width={1920}
+                      height={1080}
+                    />
+                  </div>
                 </>
               );
             })}
           </div>
-          <p>
-            {language === 'english'
-              ? property.englishDescription.text
-              : property.spanishDescription.text}
-          </p>
+          <article>
+            <Markdown>
+              {language === 'english'
+                ? property.englishDescription.markdown
+                : property.spanishDescription.markdown}
+            </Markdown>
+          </article>
 
           <h2 className="text-xl lg:text-3xl">
             {language === 'english' ? 'Features' : 'Características'}

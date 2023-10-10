@@ -2,39 +2,44 @@
 
 import { LanguageContext } from '@/context/LanguageContext';
 import { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
 import Image from 'next/image';
+import ImageLoader from '../ImageLoader';
 import LogoSvg from '../LogoSvg';
 import SmallLogoSvg from '../SmallLogoSvg';
-import ImageLoader from '../ImageLoader';
 
-const Header = () => {
+interface HeaderProps {
+  data: {
+    url: string;
+    width: number;
+    height: number;
+  };
+}
+
+const Header = ({ data }: HeaderProps) => {
   const { head } = useContext(LanguageContext);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState('');
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
   useEffect(() => {
-    const fetchImage = async () => {
-      const res = await axios.get('/api/landing');
-      setImage(res.data.headerImages[0].node.image.url);
-      setWidth(res.data.headerImages[0].node.image.width);
-      setHeight(res.data.headerImages[0].node.image.height);
-    };
-
-    fetchImage();
-  }, []);
+    setImage(data.url);
+    setWidth(data.width);
+    setHeight(data.height);
+  }, [data.height, data.url, data.width]);
 
   return (
     <section className="max-lg:pb-8">
       <LogoSvg hidden />
       <SmallLogoSvg />
       {!image ? (
-        <ImageLoader />
+        <ImageLoader variant="banner" />
       ) : (
         <Image
           src={image}
           alt="villa"
-          className="bg-secondary w-full h-[300px] 2xl:h-[450px] object-cover object-bottom"
+          className="w-full h-[300px] 2xl:h-[450px] object-cover object-bottom transition-opacity duration-500 opacity-0"
+          onLoadingComplete={image => {
+            image.classList.add('opacity-100');
+          }}
           width={width}
           height={height}
         />

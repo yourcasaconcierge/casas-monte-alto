@@ -2,7 +2,6 @@
 
 import { Inter } from 'next/font/google';
 import { LanguageContext } from '@/context/LanguageContext';
-import { PropertiesContext } from '@/context/PropertiesContext';
 import { Scrollbar, A11y } from 'swiper/modules';
 import { Swiper } from 'swiper/react';
 import { SwiperSlide } from 'swiper/react';
@@ -14,11 +13,20 @@ const inter = Inter({ subsets: ['latin'] });
 
 import 'swiper/css';
 import 'swiper/css/scrollbar';
+import { Property } from '@/types/PropertyTypes';
 
-const Properties = () => {
+interface PropertiesProps {
+  data: Property[];
+}
+
+const Properties = ({ data }: PropertiesProps) => {
+  data.sort((a: any, b: any) => {
+    return (
+      new Date(b.node.publishedAt).getTime() -
+      new Date(a.node.publishedAt).getTime()
+    );
+  });
   const { language, nav } = useContext(LanguageContext);
-  const { properties } = useContext(PropertiesContext);
-
   const comingSoonArray = [
     {
       englishHeader: 'Coming Soon',
@@ -67,7 +75,7 @@ const Properties = () => {
         slidesPerView={1.5}
         scrollbar={{ draggable: true }}
       >
-        {properties.map((property, index) => (
+        {data.map((property, index) => (
           <SwiperSlide
             key={index}
             onClick={() => router.push(`/properties/${property.node.slug}`)}
@@ -94,7 +102,7 @@ const Properties = () => {
           </SwiperSlide>
         ))}
 
-        {properties.length < 3 &&
+        {data.length < 3 &&
           comingSoonArray.map((property, index) => (
             <SwiperSlide key={index}>
               <ComingSoonTemplate

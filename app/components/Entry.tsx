@@ -1,7 +1,6 @@
 'use client';
 
-import { EntryContext } from '@/context/EntryContext';
-import { EntryNode } from '@/types/EntryTypes';
+import { Entry, EntryNode } from '@/types/EntryTypes';
 import { Inter } from 'next/font/google';
 import { LanguageContext } from '@/context/LanguageContext';
 import { useContext, useEffect, useState } from 'react';
@@ -13,16 +12,16 @@ const inter = Inter({ subsets: ['latin'] });
 
 interface EntryProps {
   slug: string;
+  data: Entry[];
 }
 
-const Entry = ({ slug }: EntryProps) => {
-  const { entries } = useContext(EntryContext);
+const Entry = ({ slug, data }: EntryProps) => {
   const { language } = useContext(LanguageContext);
   const [entry, setEntry] = useState<EntryNode>();
   useEffect(() => {
-    const foundEntry = entries.find(entry => entry.node.slug === slug);
+    const foundEntry = data.find(entry => entry.node.slug === slug);
     foundEntry && setEntry(foundEntry.node);
-  }, [entries, slug]);
+  }, [data, slug]);
 
   return (
     <div className="layout max-lg:mt-32 mb-32 flex flex-col items-center">

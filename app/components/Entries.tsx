@@ -1,21 +1,30 @@
 'use client';
 
-import { EntryContext } from '@/context/EntryContext';
+import { Entry } from '@/types/EntryTypes';
 import { LanguageContext } from '@/context/LanguageContext';
 import { useContext } from 'react';
 import EntryPreview from './EntryPreview';
 import LatestEntryPreview from './LatestEntryPreview';
 import Loader from './Loader';
 
-const Entries = () => {
-  const { entries, loading } = useContext(EntryContext);
+interface EntriesProps {
+  data: Entry[];
+}
+
+const Entries = ({ data }: EntriesProps) => {
+  data = data.sort((a: any, b: any) => {
+    return (
+      new Date(b.node.publishedAt).getTime() -
+      new Date(a.node.publishedAt).getTime()
+    );
+  });
   const { language } = useContext(LanguageContext);
-  const firstEntry = entries[0];
-  const restOfEntries = entries.slice(1);
+  const firstEntry = data[0];
+  const restOfEntries = data.slice(1);
   return (
     <>
       {' '}
-      {loading ? (
+      {!data ? (
         <Loader />
       ) : (
         <>

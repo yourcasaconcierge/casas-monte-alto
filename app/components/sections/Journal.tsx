@@ -1,17 +1,25 @@
 'use client';
 
-import { EntryContext } from '@/context/EntryContext';
 import { LanguageContext } from '@/context/LanguageContext';
 import { useContext } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Entry } from '@/types/EntryTypes';
+import ImageLoader from '../ImageLoader';
 
-const Journal = () => {
-  const { entries: data } = useContext(EntryContext);
+interface EntriesProps {
+  data: Entry[];
+}
+
+const Journal = ({ data }: EntriesProps) => {
+  data = data.sort((a: any, b: any) => {
+    return (
+      new Date(b.node.publishedAt).getTime() -
+      new Date(a.node.publishedAt).getTime()
+    );
+  });
   const { language, nav } = useContext(LanguageContext);
-
   const entries = data.slice(0, 2);
-
   return (
     <section>
       <h3 className="text-center text-xl capitalize mb-14">{nav?.journal}</h3>

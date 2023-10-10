@@ -1,6 +1,6 @@
 'use client';
 
-import { AboutsContext } from '@/context/AboutContext';
+import { AboutNode } from '@/types/AboutTypes';
 import { Inter } from 'next/font/google';
 import { LanguageContext } from '@/context/LanguageContext';
 import { useContext } from 'react';
@@ -10,11 +10,14 @@ import Loader from '@/app/components/Loader';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const About = () => {
-  const { about } = useContext(AboutsContext);
+interface AboutProps {
+  data: AboutNode;
+}
+
+const About = ({ data }: AboutProps) => {
   const { language } = useContext(LanguageContext);
 
-  if (!about) return <Loader className="mt-32" />;
+  if (!data) return <Loader className="mt-32" />;
 
   const {
     englishHeaderOne,
@@ -23,7 +26,7 @@ const About = () => {
     englishHeaderFour,
     englishParagraphOne,
     englishParagraphTwo,
-  } = about;
+  } = data;
   const {
     spanishHeaderOne,
     spanishHeaderTwo,
@@ -31,30 +34,30 @@ const About = () => {
     spanishHeaderFour,
     spanishParagraphOne,
     spanishParagraphTwo,
-  } = about;
+  } = data;
 
-  const { imageOne, imageTwo, imageThree } = about;
+  const { imageOne, imageTwo, imageThree } = data;
 
   if (!englishParagraphOne) return <Loader className="mt-32" />;
 
   const section = [
     {
       heading:
-        about && language === 'english'
+        data && language === 'english'
           ? englishParagraphOne.text?.split('\\n')[0]
           : spanishParagraphOne.text?.split('\\n')[0],
       paragraph:
-        about && language === 'english'
+        data && language === 'english'
           ? englishParagraphOne.text?.split('\\n')[1]
           : spanishParagraphOne.text?.split('\\n')[1],
     },
     {
       heading:
-        about && language === 'english'
+        data && language === 'english'
           ? englishParagraphTwo.text?.split('\\n')[0]
           : spanishParagraphTwo.text?.split('\\n')[0],
       paragraph:
-        about && language === 'english'
+        data && language === 'english'
           ? englishParagraphTwo.text?.split('\\n')[1]
           : spanishParagraphTwo.text?.split('\\n')[1],
     },

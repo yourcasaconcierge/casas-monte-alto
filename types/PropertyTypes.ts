@@ -4,10 +4,10 @@ export interface PropertyNode {
   publishedAt: string;
   slug: string;
   englishDescription: {
-    text: string;
+    markdown: string;
   };
   spanishDescription: {
-    text: string;
+    markdown: string;
   };
   englishFeatures: {
     text: string;
@@ -40,10 +40,10 @@ export interface Property {
     publishedAt: string;
     slug: string;
     englishDescription: {
-      text: string;
+      markdown: string;
     };
     spanishDescription: {
-      text: string;
+      markdown: string;
     };
     englishFeatures: {
       text: string;
