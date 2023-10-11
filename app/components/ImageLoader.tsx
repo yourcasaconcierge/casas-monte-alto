@@ -1,12 +1,13 @@
 interface ImageLoaderProps {
-  variant: string;
+  variant?: string;
+  className?: string;
 }
 
 interface SizeVariants {
   [key: string]: string;
 }
 
-const ImageLoader = ({ variant }: ImageLoaderProps) => {
+const ImageLoader = ({ variant, className }: ImageLoaderProps) => {
   const sizeVariants: SizeVariants = {
     banner: 'h-[300px] 2xl:h-[450px]',
     responsive: 'w-full h-full',
@@ -14,7 +15,11 @@ const ImageLoader = ({ variant }: ImageLoaderProps) => {
   };
   return (
     <div
-      className={`bg-neutral-500 w-full ${sizeVariants[variant]} animate-pulse`}
+      className={`
+      ${variant && sizeVariants[variant]} 
+      ${className} 
+      bg-neutral-500 animate-pulse
+      `}
     />
   );
 };

@@ -32,7 +32,7 @@ const Entry = ({ slug, data }: EntryProps) => {
           <section className="flex flex-col lg:flex-row-reverse lg:justify-between gap-5 max-xl:pb-5 w-full lg:h-screen border-b-2 border-secondary">
             <Image
               src={entry.featuredImage.url}
-              className="bg-secondary lg:w-1/2 h-[350px] lg:h-full w-full object-cover"
+              className="lg:w-1/2 h-[350px] lg:h-full w-full object-cover"
               alt="contact us"
               width={1470}
               height={800}

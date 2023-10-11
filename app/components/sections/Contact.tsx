@@ -1,8 +1,8 @@
 'use client';
 
 import { LanguageContext } from '@/context/LanguageContext';
-import Link from 'next/link';
 import { useContext } from 'react';
+import Link from 'next/link';
 
 const Contact = () => {
   const { cont } = useContext(LanguageContext);

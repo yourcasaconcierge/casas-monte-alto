@@ -4,6 +4,7 @@ import { Property } from '@/types/PropertyTypes';
 import Image from 'next/image';
 import Link from 'next/link';
 import Loader from './Loader';
+import ImageLoader from './ImageLoader';
 
 interface PropertyPreviewProps {
   data: Property[];
@@ -30,14 +31,16 @@ const PropertyPreview = ({ data }: PropertyPreviewProps) => {
             >
               <>
                 {!property.node.images[0].url ? (
-                  <div className="w-[300px] h-[200px] bg-secondary"></div>
+                  <ImageLoader
+                    className="max-md:w-full h-[200px] "
+                  />
                 ) : (
                   <Image
                     src={property.node.images[0].url}
                     alt={property.node.propertyName}
                     width={300}
                     height={300}
-                    className="max-md:w-full h-auto object-cover"
+                    className="max-md:w-full h-[200px] object-cover"
                     priority
                   />
                 )}

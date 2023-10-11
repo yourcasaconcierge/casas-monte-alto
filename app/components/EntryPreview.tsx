@@ -1,6 +1,7 @@
 import { EntryPreview } from '@/types/EntryTypes';
 import Image from 'next/image';
 import Link from 'next/link';
+import ImageLoader from './ImageLoader';
 
 const EntryPreview = ({ slug, title, excerpt, image }: EntryPreview) => {
   return (
@@ -12,7 +13,7 @@ const EntryPreview = ({ slug, title, excerpt, image }: EntryPreview) => {
       <Link href={`/journal/entry/${slug}`} className="flex flex-col gap-3">
         <Image
           src={image}
-          className="bg-secondary w-full aspect-square max-lg:aspect-video object-cover max-lg:max-h-[500px]"
+          className="w-full aspect-square max-lg:aspect-video object-cover max-lg:max-h-[500px]"
           alt={title as string}
           width={500}
           height={500}
