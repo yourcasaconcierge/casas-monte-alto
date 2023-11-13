@@ -21,7 +21,6 @@ const PropertyPreview = ({ data }: PropertyPreviewProps) => {
   });
   const dataLength = data.length;
   const isSmallerScreen = GetScreenSize() <= 1024;
-
   return (
     <>
       {!data ? (
@@ -52,6 +51,15 @@ const PropertyPreview = ({ data }: PropertyPreviewProps) => {
                     className={`absolute top-0 left-0
                 ${!isNotFirstInGroupOfThree && 'lg:left-5'}
                 ${!isEven && isSmallerScreen && 'md:left-5'}
+                ${
+                  number > 3
+                    ? 'lg:top-5'
+                    : number > 2
+                    ? 'max-lg:top-5'
+                    : number > 1
+                    ? 'max-md:top-5'
+                    : ''
+                }
                 `}
                   >
                     0{number} {property.node.propertyName}
