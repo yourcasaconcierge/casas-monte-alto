@@ -15,7 +15,7 @@ interface HeaderProps {
   };
 }
 
-const Header = ({ data }: HeaderProps) => {
+const Hero = ({ data }: HeaderProps) => {
   const { head } = useContext(LanguageContext);
   const [image, setImage] = useState('');
   const [width, setWidth] = useState(0);
@@ -27,7 +27,7 @@ const Header = ({ data }: HeaderProps) => {
   }, [data.height, data.url, data.width]);
 
   return (
-    <section className="max-lg:pb-8">
+    <section className="max-lg:pb-8 min-h-screen">
       <LogoSvg hidden />
       <SmallLogoSvg />
       {!image ? (
@@ -44,11 +44,11 @@ const Header = ({ data }: HeaderProps) => {
           height={height}
         />
       )}
-      <h2 className="py-5 text-sm md:text-lg 2xl:text-xl border-b-2 border-secondary">
+      <h2 className="py-5 text-sm md:text-lg 2xl:text-xl border-b-[1px] border-secondary">
         {head?.line1} <br className="max-md:hidden" /> {head?.line2}
       </h2>
     </section>
   );
 };
 
-export default Header;
+export default Hero;

@@ -11,9 +11,9 @@ const ContactPageContainer = () => {
   const { cont } = useContext(LanguageContext);
   const { heading, link } = cont.page;
   return (
-    <div className="w-full flex flex-col gap-5 lg:gap-8 justify-center items-center max-lg:mt-14">
+    <div className="w-full lg:w-1/2 flex flex-col gap-5 lg:gap-8 text-center justify-center items-center max-lg:mt-14">
       <h1
-        className={`${inter.className} text-5xl lg:text-8xl capitalize font-bold`}
+        className={`${inter.className} text-5xl xl:text-8xl capitalize font-bold`}
       >
         {heading}
       </h1>

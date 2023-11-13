@@ -3,10 +3,9 @@
 import { Inter } from 'next/font/google';
 import { LanguageContext } from '@/context/LanguageContext';
 import { useContext, useState } from 'react';
+import LanguageButton from './LanguageButton';
 import Link from 'next/link';
 import Menu from './Menu';
-import LanguageButton from './LanguageButton';
-import ClientOnly from './ClientOnly';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +21,7 @@ const Nav = () => {
       <nav
         className={`
         ${isOpen === 'open' ? '' : 'shadow-lg'}
-        fixed top-0 left-0 w-full py-8 text-secondary bg-primary  z-50`}
+        fixed top-0 left-0 w-full py-8 text-secondary bg-primary z-50 paragraph`}
       >
         <div className="flex justify-between items-center layout">
           <div className="hidden lg:flex gap-3">
@@ -38,9 +37,7 @@ const Nav = () => {
           </Link>
 
           <div className="flex gap-5">
-            <ClientOnly>
-              <LanguageButton />
-            </ClientOnly>
+            <LanguageButton />
 
             <Link
               href="/properties"

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import LoadingScreen from './LoadingScreen';
 
 interface ClientOnlyProps {
   children: React.ReactNode;
@@ -15,7 +16,7 @@ const ClientOnly = ({ children }: ClientOnlyProps) => {
     }, 2000);
   }, [setHasMounted]);
 
-  if (!hasMounted) return null;
+  if (!hasMounted) return <LoadingScreen />;
 
   return <>{children}</>;
 };

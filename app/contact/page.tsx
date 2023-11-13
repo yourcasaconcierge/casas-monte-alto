@@ -10,10 +10,8 @@ export const metadata: Metadata = {
 
 const ContactPage = () => {
   return (
-    <main className="layout lg:h-screen lg:flex max-lg:mt-32 mb-32">
-      {!img && (
-        <ImageLoader className="lg:w-1/2 h-[300px] lg:h-full w-full max-lg:mt-14" />
-      )}
+    <main className="layout lg:h-screen lg:flex max-lg:mt-32 mb-32 relative">
+      {!img && <ImageLoader variant="contact" />}
       <Image
         src={img}
         className="lg:w-1/2 h-[300px] lg:h-full w-full max-lg:mt-14 object-cover"

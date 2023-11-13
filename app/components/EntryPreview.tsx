@@ -1,7 +1,6 @@
 import { EntryPreview } from '@/types/EntryTypes';
 import Image from 'next/image';
 import Link from 'next/link';
-import ImageLoader from './ImageLoader';
 
 const EntryPreview = ({ slug, title, excerpt, image }: EntryPreview) => {
   return (

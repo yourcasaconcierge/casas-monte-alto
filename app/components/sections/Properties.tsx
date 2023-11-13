@@ -66,9 +66,7 @@ const Properties = ({ data }: PropertiesProps) => {
   const router = useRouter();
   return (
     <section id="properties">
-      <h2 className="text-3xl 2xl:text-5xl mb-5 capitalize">
-        {nav?.properties}
-      </h2>
+      <h1 className="heading mb-10 capitalize">{nav?.properties}</h1>
       <Swiper
         modules={[Scrollbar, A11y]}
         spaceBetween={50}
@@ -84,7 +82,7 @@ const Properties = ({ data }: PropertiesProps) => {
               <Image
                 src={property.node.images[0].url}
                 alt={property.node.propertyName}
-                className="object-cover w-full h-[40vh] lg:h-[60vh] 2xl:h-[80vh]"
+                className="object-cover w-full h-[40vh] lg:h-[60vh]"
                 width={1920}
                 height={1080}
               />
@@ -92,7 +90,7 @@ const Properties = ({ data }: PropertiesProps) => {
                 <h3 className="text-lg 2xl:text-2xl">
                   {property.node.propertyName}
                 </h3>
-                <p className="text-xs lg:text-sm line-clamp-1">
+                <p className="paragraph line-clamp-1">
                   {language === 'english'
                     ? property.node.englishDescription.markdown
                     : property.node.spanishDescription.markdown}

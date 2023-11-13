@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useContext, useEffect, useState } from 'react';
-import { BsArrowUpRight } from 'react-icons/bs';
+import { useContext, useEffect, useState } from 'react';
 import { LanguageContext } from '@/context/LanguageContext';
 import Image from 'next/image';
 import ImageLoader from './ImageLoader';
 import Link from 'next/link';
 import LogoSvg from './LogoSvg';
+import RotatingArrow from './RotatingArrow';
 
 interface FooterContentProps {
   data: {
@@ -26,14 +26,14 @@ const FooterContent = ({ data }: FooterContentProps) => {
     setHeight(data.height);
   }, [data.height, data.url, data.width]);
   return (
-    <div className="layout pb-5 justify-end max-sm:text-[0.6rem] 2xl:text-base">
-      <div className="py-8 border-t-2 border-secondary">
+    <div className="layout pb-5 justify-end paragraph">
+      <div className="py-8 border-t-[1px] border-secondary">
         <Link
           href="https://www.instagram.com/casasmontealto/"
-          className="text-base group"
+          className=" group"
         >
           <span>INSTAGRAM</span>
-          <BsArrowUpRight className="inline-block pb-1 group-hover:rotate-45 duration-200" />
+          <RotatingArrow />
         </Link>
       </div>
       {!image ? (
@@ -52,7 +52,7 @@ const FooterContent = ({ data }: FooterContentProps) => {
       )}
 
       <LogoSvg />
-      <div className="flex justify-between">
+      <div className="flex justify-between small-text">
         <p>{foot?.line1}</p>
         <Link
           href="https://www.linkedin.com/in/terel-phillips/"

@@ -1,12 +1,19 @@
 'use client';
 
 import { createContext, useEffect, useState } from 'react';
-import { navigation, header, contact, footer } from '@/data/english';
+import {
+  navigation,
+  header,
+  contact,
+  footer,
+  miscellaneous,
+} from '@/data/english';
 import {
   navigation as navS,
   header as headS,
   contact as contS,
   footer as footS,
+  miscellaneous as miscS,
 } from '@/data/spanish';
 
 interface LanguageContextProps {
@@ -35,6 +42,12 @@ interface LanguageContextProps {
     line1: string;
     line2: string;
   };
+  misc: {
+    entry: string;
+    latestEntry: string;
+    exploreBtn: string;
+    previewBtn: string;
+  };
   toggleLanguage: () => void;
 }
 
@@ -44,6 +57,7 @@ export const LanguageContext = createContext<LanguageContextProps>({
   head: header,
   cont: contact,
   foot: footer,
+  misc: miscellaneous,
   toggleLanguage: () => {},
 });
 
@@ -62,6 +76,7 @@ export const LanguageProvider = ({ children }: any) => {
   const [head, setHead] = useState(header);
   const [cont, setCont] = useState(contact);
   const [foot, setFoot] = useState(footer);
+  const [misc, setMisc] = useState(miscellaneous);
 
   const toggleLanguage = () => {
     if (language === 'english') {
@@ -81,11 +96,13 @@ export const LanguageProvider = ({ children }: any) => {
       setHead(header);
       setCont(contact);
       setFoot(footer);
+      setMisc(miscellaneous);
     } else {
       setNav(navS);
       setHead(headS);
       setCont(contS);
       setFoot(footS);
+      setMisc(miscS);
     }
   }, [language]);
 
@@ -95,7 +112,7 @@ export const LanguageProvider = ({ children }: any) => {
     head,
     cont,
     foot,
-
+    misc,
     toggleLanguage,
   };
   return (

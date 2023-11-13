@@ -13,7 +13,7 @@ const header = {
 const contact = {
   landing: {
     heading: 'Reach out and reserve your dream stay!',
-    button: 'Talk to us!',
+    button: 'Talk to Us!',
   },
   page: {
     heading: 'Contact Us',
@@ -26,4 +26,11 @@ const footer = {
   line2: 'credits',
 };
 
-export { navigation, header, contact, footer };
+const miscellaneous = {
+  entry: 'Entry',
+  latestEntry: 'Latest Entry',
+  exploreBtn: 'Explore',
+  previewBtn: 'view',
+};
+
+export { navigation, header, contact, footer, miscellaneous };

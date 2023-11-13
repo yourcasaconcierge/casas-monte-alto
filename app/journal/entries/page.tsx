@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const EntriesPage = async () => {
   const data = await getEntries();
   return (
-    <main className="layout my-32">
+    <main className="layout mt-32">
       <Entries data={data} />
     </main>
   );

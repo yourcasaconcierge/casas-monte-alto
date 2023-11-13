@@ -1,11 +1,10 @@
 'use client';
 
+import { Entry } from '@/types/EntryTypes';
 import { LanguageContext } from '@/context/LanguageContext';
 import { useContext } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Entry } from '@/types/EntryTypes';
-import ImageLoader from '../ImageLoader';
 
 interface EntriesProps {
   data: Entry[];
@@ -42,12 +41,12 @@ const Journal = ({ data }: EntriesProps) => {
             />
             <div className="max-w-[796.63px]">
               <p>{language === 'english' ? 'Entry' : 'Entrada'}</p>
-              <p className="font-bold text-sm lg:text-base 2xl:text-lg">
+              <p className="font-bold paragraph">
                 {language === 'english'
                   ? entry.node?.englishTitle
                   : entry.node?.spanishTitle}
               </p>
-              <p className="text-sm lg:text-base 2xl:text-lg line-clamp-1">
+              <p className="paragraph line-clamp-1">
                 {language === 'english'
                   ? entry.node?.englishExcerpt
                   : entry.node?.spanishExcerpt}

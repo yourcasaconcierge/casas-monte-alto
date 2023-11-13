@@ -3,9 +3,9 @@
 import { Entry } from '@/types/EntryTypes';
 import { LanguageContext } from '@/context/LanguageContext';
 import { useContext } from 'react';
-import EntryPreview from './EntryPreview';
 import LatestEntryPreview from './LatestEntryPreview';
 import Loader from './Loader';
+import ArticleHero from './ArticleHero';
 
 interface EntriesProps {
   data: Entry[];
@@ -23,7 +23,6 @@ const Entries = ({ data }: EntriesProps) => {
   const restOfEntries = data.slice(1);
   return (
     <>
-      {' '}
       {!data ? (
         <Loader />
       ) : (
@@ -44,23 +43,25 @@ const Entries = ({ data }: EntriesProps) => {
               image={firstEntry.node.featuredImage.url}
             />
           )}
-          <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-14">
+          <section className="grid grid-cols-1 max-md:gap-5">
             {restOfEntries.map((entry, index) => {
               return (
-                <EntryPreview
+                <ArticleHero
+                  componentType="preview"
+                  preview
                   key={entry.node.slug}
+                  index={index}
                   slug={entry.node.slug}
-                  title={
-                    language === 'english'
-                      ? entry.node.englishTitle
-                      : entry.node.spanishTitle
-                  }
+                  imagerURL={entry.node.featuredImage.url}
+                  englishTitle={entry.node.englishTitle}
+                  spanishTitle={entry.node.spanishTitle}
+                  englishSubtitle={entry.node.englishSubtitle}
+                  spanishSubtitle={entry.node.spanishSubtitle}
                   excerpt={
                     language === 'english'
                       ? entry.node.englishExcerpt
                       : entry.node.spanishExcerpt
                   }
-                  image={entry.node.featuredImage.url}
                 />
               );
             })}

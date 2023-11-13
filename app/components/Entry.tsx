@@ -7,6 +7,7 @@ import { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Loader from './Loader';
 import Markdown from 'markdown-to-jsx';
+import ArticleHero from './ArticleHero';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -29,38 +30,32 @@ const Entry = ({ slug, data }: EntryProps) => {
         <Loader />
       ) : (
         <>
-          <section className="flex flex-col lg:flex-row-reverse lg:justify-between gap-5 max-xl:pb-5 w-full lg:h-screen border-b-2 border-secondary">
-            <Image
-              src={entry.featuredImage.url}
-              className="lg:w-1/2 h-[350px] lg:h-full w-full object-cover"
-              alt="contact us"
-              width={1470}
-              height={800}
-            />
-            <div className="flex max-lg:flex-col-reverse flex-col gap-5 lg:justify-end lg:mb-14 max-md:text-center">
-              <h2 className="text-lg font-semibold">
-                <div>
-                  {language === 'english'
-                    ? entry?.englishSubtitle
-                    : entry?.spanishSubtitle}
-                </div>
-              </h2>
-              <h1
-                className={`${inter.className} text-3xl lg:text-5xl font-bold`}
-              >
+          <ArticleHero
+            componentType="entry"
+            preview
+            key={entry.slug}
+            index={0}
+            slug={entry.slug}
+            imagerURL={entry.featuredImage.url}
+            englishTitle={entry.englishTitle}
+            spanishTitle={entry.spanishTitle}
+            englishSubtitle={entry.englishSubtitle}
+            spanishSubtitle={entry.spanishSubtitle}
+            excerpt={
+              language === 'english'
+                ? entry.englishExcerpt
+                : entry.spanishExcerpt
+            }
+          />
+          <section>
+            <article className="prose lg:prose-xl prose-stone prose-headings:prose-stone layout max-w-none px-24 lg:mt-14">
+              <Markdown>
                 {language === 'english'
-                  ? entry?.englishTitle
-                  : entry?.spanishTitle}
-              </h1>
-            </div>
+                  ? entry?.englishContent.markdown
+                  : entry?.spanishContent.markdown}
+              </Markdown>
+            </article>
           </section>
-          <article className="prose lg:prose-xl prose-stone prose-headings:prose-stone layout max-w-none px-24 lg:mt-14">
-            <Markdown>
-              {language === 'english'
-                ? entry?.englishContent.markdown
-                : entry?.spanishContent.markdown}
-            </Markdown>
-          </article>
         </>
       )}
     </div>

@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Modal from './Modal';
 import Markdown from 'markdown-to-jsx';
+import ContentDivider from './ContentDivider';
 
 interface PropertyProps {
   slug: string;
@@ -40,7 +41,7 @@ const Property = ({ slug, data }: PropertyProps) => {
     foundProperty && setProperty(foundProperty.node);
   }, [data, slug]);
   return (
-    <div className="my-32 layout lg:text-lg flex flex-col gap-10">
+    <div className="my-32 layout lg:text-lg flex flex-col ">
       {!property ? (
         <Loader />
       ) : (
@@ -58,6 +59,7 @@ const Property = ({ slug, data }: PropertyProps) => {
               {property.bathrooms}
             </p>
           </div>
+          <ContentDivider />
           <Image
             src={property.images[0].url}
             alt={property.propertyName}
@@ -93,6 +95,7 @@ const Property = ({ slug, data }: PropertyProps) => {
               );
             })}
           </div>
+          <ContentDivider />
           <article>
             <Markdown>
               {language === 'english'
@@ -100,7 +103,7 @@ const Property = ({ slug, data }: PropertyProps) => {
                 : property.spanishDescription.markdown}
             </Markdown>
           </article>
-
+          <ContentDivider />
           <h2 className="text-xl lg:text-3xl">
             {language === 'english' ? 'Features' : 'Características'}
           </h2>

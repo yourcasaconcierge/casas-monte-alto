@@ -8,6 +8,7 @@ const navigation = {
 const header = {
   line1: 'Administración de propiedades de alquiler a corto plazo',
   line2: 'Servicios de hospitalidad en Mendoza, Argentina',
+  entry: 'Entrada',
 };
 
 const contact = {
@@ -42,4 +43,11 @@ const aboutPage = {
   },
 };
 
-export { navigation, header, contact, footer, aboutPage };
+const miscellaneous = {
+  entry: 'Entrada',
+  latestEntry: 'Última entrada',
+  exploreBtn: 'Explorar',
+  previewBtn: 'vista',
+};
+
+export { navigation, header, contact, footer, aboutPage, miscellaneous };

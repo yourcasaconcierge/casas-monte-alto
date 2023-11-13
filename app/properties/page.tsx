@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const page = async () => {
   const data = await getProperties();
   return (
-    <main className="my-32 layout gap-10 flex flex-wrap flex-grow max-md:justify-center">
+    <main className="mt-32 layout grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       <PropertyPreview data={data} />
     </main>
   );

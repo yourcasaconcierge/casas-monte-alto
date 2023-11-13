@@ -12,6 +12,7 @@ const ImageLoader = ({ variant, className }: ImageLoaderProps) => {
     banner: 'h-[300px] 2xl:h-[450px]',
     responsive: 'w-full h-full',
     journal: 'w-full h-full min-h-[300px] 2xl:h-[650px]',
+    contact: 'lg:w-1/2 h-[300px] lg:h-full w-full max-lg:mt-14',
   };
   return (
     <div

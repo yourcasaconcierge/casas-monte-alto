@@ -19,6 +19,22 @@ html {
   @apply container mx-auto px-3 lg:px-14 2xl:px-5;
 }
 
+.heading {
+  @apply text-3xl md:text-4xl lg:text-5xl;
+}
+
+.subheading {
+  @apply text-xl md:text-2xl lg:text-3xl;
+}
+
+.paragraph {
+  @apply text-sm lg:text-base 2xl:text-lg;
+}
+
+.small-text {
+  @apply text-xs lg:text-sm;
+}
+
 /* MENU STYLES */
 .menu-btn {
   display: flex;

@@ -6,6 +6,7 @@ import Nav from './components/Nav';
 import Scrollbars from './components/Scrollbar';
 
 import './globals.css';
+import ClientOnly from './components/ClientOnly';
 
 const robotoMono = Roboto_Mono({ subsets: ['latin'] });
 
@@ -39,12 +40,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${robotoMono.className} scrollhost`}>
-        <LanguageProvider>
-          <Nav />
-          <Scrollbars />
-          {children}
-          <Footer />
-        </LanguageProvider>
+        <ClientOnly>
+          <LanguageProvider>
+            <Nav />
+            <Scrollbars />
+            {children}
+            <Footer />
+          </LanguageProvider>
+        </ClientOnly>
       </body>
     </html>
   );
