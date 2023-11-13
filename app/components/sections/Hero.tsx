@@ -27,7 +27,7 @@ const Hero = ({ data }: HeaderProps) => {
   }, [data.height, data.url, data.width]);
 
   return (
-    <section className="max-lg:pb-8 min-h-screen">
+    <section className="max-lg:pb-8">
       <LogoSvg hidden />
       <SmallLogoSvg />
       {!image ? (
