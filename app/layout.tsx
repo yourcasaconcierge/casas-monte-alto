@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { Roboto_Mono } from 'next/font/google';
+import ClientOnly from './components/ClientOnly';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
 import Scrollbars from './components/Scrollbar';
 
 import './globals.css';
-import ClientOnly from './components/ClientOnly';
 
 const robotoMono = Roboto_Mono({ subsets: ['latin'] });
 

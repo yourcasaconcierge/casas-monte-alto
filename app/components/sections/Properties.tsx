@@ -2,6 +2,7 @@
 
 import { Inter } from 'next/font/google';
 import { LanguageContext } from '@/context/LanguageContext';
+import { Property } from '@/types/PropertyTypes';
 import { Scrollbar, A11y } from 'swiper/modules';
 import { Swiper } from 'swiper/react';
 import { SwiperSlide } from 'swiper/react';
@@ -13,7 +14,6 @@ const inter = Inter({ subsets: ['latin'] });
 
 import 'swiper/css';
 import 'swiper/css/scrollbar';
-import { Property } from '@/types/PropertyTypes';
 
 interface PropertiesProps {
   data: Property[];
@@ -27,6 +27,7 @@ const Properties = ({ data }: PropertiesProps) => {
     );
   });
   const { language, nav } = useContext(LanguageContext);
+  const router = useRouter();
   const comingSoonArray = [
     {
       englishHeader: 'Coming Soon',
@@ -42,28 +43,6 @@ const Properties = ({ data }: PropertiesProps) => {
     },
   ];
 
-  const ComingSoonTemplate = ({
-    header,
-    text,
-  }: {
-    header: string;
-    text: string;
-  }) => (
-    <article>
-      <div
-        className={`
-      ${inter.className}
-      bg-secondary text-primary flex items-center justify-center uppercase lg:text-8xl h-[40vh] lg:h-[80vh]`}
-      >
-        <p>{header}</p>
-      </div>
-      <div className="flex flex-col gap-2 py-5">
-        <p className="text-lg lg:text-2xl">{text}</p>
-      </div>
-    </article>
-  );
-
-  const router = useRouter();
   return (
     <section id="properties">
       <h1 className="heading mb-10 capitalize">{nav?.properties}</h1>
@@ -78,14 +57,16 @@ const Properties = ({ data }: PropertiesProps) => {
             key={index}
             onClick={() => router.push(`/properties/${property.node.slug}`)}
           >
-            <article className="flex flex-col w-full h-full cursor-pointer">
-              <Image
-                src={property.node.images[0].url}
-                alt={property.node.propertyName}
-                className="object-cover w-full h-[40vh] lg:h-[60vh]"
-                width={1920}
-                height={1080}
-              />
+            <article className="flex flex-col w-full h-full cursor-pointer relative">
+              <div className="w-full h-[40vh] lg:h-[60vh] relative">
+                <Image
+                  src={property.node.images[0].url}
+                  alt={property.node.propertyName}
+                  className="object-cover "
+                  fill
+                  sizes="(max-width: 768px) 100vw, 700px (min-width: 1024px) 100vw"
+                />
+              </div>
               <div className="flex flex-col gap-2 py-5">
                 <h3 className="text-lg 2xl:text-2xl">
                   {property.node.propertyName}
@@ -123,3 +104,24 @@ const Properties = ({ data }: PropertiesProps) => {
 };
 
 export default Properties;
+
+const ComingSoonTemplate = ({
+  header,
+  text,
+}: {
+  header: string;
+  text: string;
+}) => (
+  <article>
+    <div
+      className={`
+    ${inter.className}
+    bg-secondary text-primary flex items-center justify-center uppercase lg:text-8xl h-[40vh] lg:h-[80vh]`}
+    >
+      <p>{header}</p>
+    </div>
+    <div className="flex flex-col gap-2 py-5">
+      <p className="text-lg lg:text-2xl">{text}</p>
+    </div>
+  </article>
+);

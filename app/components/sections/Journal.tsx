@@ -22,24 +22,28 @@ const Journal = ({ data }: EntriesProps) => {
   return (
     <section>
       <h3 className="text-center text-xl capitalize mb-14">{nav?.journal}</h3>
-      <div className="flex max-lg:flex-col justify-between gap-20 lg:gap-32 w-full">
-        {entries?.map((entry, index) => (
+      <div className="flex max-lg:flex-col gap-20 xl:gap-32 ">
+        {entries?.map(entry => (
           <Link
             href={`/journal/entry/${entry.node.slug}`}
             key={entry.node.slug}
+            className="w-full"
           >
-            <Image
-              src={entry.node.featuredImage.url}
-              alt={
-                language === 'english'
-                  ? entry.node?.englishTitle
-                  : entry.node?.spanishTitle
-              }
-              className="w-full h-full mb-2 object-cover"
-              width={1000}
-              height={650}
-            />
-            <div className="max-w-[796.63px]">
+            <div className="relative w-full max-lg:max-h-[300px] lg:max-h-[600px] aspect-square ">
+              <Image
+                src={entry.node.featuredImage.url}
+                alt={
+                  language === 'english'
+                    ? entry.node?.englishTitle
+                    : entry.node?.spanishTitle
+                }
+                className="object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, 700px (min-width: 1024px) 100vw"
+              />
+            </div>
+
+            <div>
               <p>{language === 'english' ? 'Entry' : 'Entrada'}</p>
               <p className="font-bold paragraph">
                 {language === 'english'

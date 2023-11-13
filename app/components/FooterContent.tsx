@@ -2,29 +2,23 @@
 
 import { useContext, useEffect, useState } from 'react';
 import { LanguageContext } from '@/context/LanguageContext';
-import Image from 'next/image';
 import ImageLoader from './ImageLoader';
 import Link from 'next/link';
 import LogoSvg from './LogoSvg';
 import RotatingArrow from './RotatingArrow';
+import Banner from './Banner';
 
 interface FooterContentProps {
   data: {
     url: string;
-    width: number;
-    height: number;
   };
 }
 const FooterContent = ({ data }: FooterContentProps) => {
   const { foot } = useContext(LanguageContext);
   const [image, setImage] = useState('');
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
   useEffect(() => {
     setImage(data.url);
-    setWidth(data.width);
-    setHeight(data.height);
-  }, [data.height, data.url, data.width]);
+  }, [data.url]);
   return (
     <div className="layout pb-5 justify-end paragraph">
       <div className="py-8 border-t-[1px] border-secondary">
@@ -39,19 +33,10 @@ const FooterContent = ({ data }: FooterContentProps) => {
       {!image ? (
         <ImageLoader variant="banner" />
       ) : (
-        <Image
-          src={image}
-          alt="villa"
-          className="w-full h-[300px] 2xl:h-[450px] object-cover transition-opacity duration-500 opacity-0"
-          onLoadingComplete={image => {
-            image.classList.add('opacity-100');
-          }}
-          width={width}
-          height={height}
-        />
+        <Banner src={image} alt="Horse standing in desert field" />
       )}
 
-      <LogoSvg />
+      <LogoSvg footer />
       <div className="flex justify-between small-text">
         <p>{foot?.line1}</p>
         <Link
