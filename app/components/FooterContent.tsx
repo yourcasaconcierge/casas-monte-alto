@@ -33,7 +33,7 @@ const FooterContent = ({ data }: FooterContentProps) => {
       {!image ? (
         <ImageLoader variant="banner" />
       ) : (
-        <Banner src={image} alt="Horse standing in desert field" />
+        <Banner footer src={image} alt="Horse standing in desert field" />
       )}
 
       <LogoSvg footer />

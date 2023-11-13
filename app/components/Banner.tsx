@@ -5,15 +5,18 @@ import Image from 'next/image';
 interface BannerProps {
   src: string;
   alt: string;
+  footer?: boolean;
 }
 
-const Banner = ({ src, alt }: BannerProps) => {
+const Banner = ({ src, alt, footer }: BannerProps) => {
   return (
     <div className="w-full h-[300px] 2xl:h-[450px] relative">
       <Image
         src={src}
         alt={alt}
-        className="object-cover object-bottom transition-opacity duration-500 opacity-0"
+        className={`object-cover ${
+          !footer && 'object-bottom'
+        } transition-opacity duration-500 opacity-0`}
         onLoadingComplete={image => {
           image.classList.add('opacity-100');
         }}
