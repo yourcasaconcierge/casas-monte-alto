@@ -6,6 +6,8 @@ import Hero from './components/sections/Hero';
 import Journal from './components/sections/Journal';
 import Properties from './components/sections/Properties';
 
+export const revalidate = 3600;
+
 export default async function Home() {
   const headerImage = await getLandingImages();
   const properties = await getProperties();

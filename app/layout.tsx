@@ -43,7 +43,6 @@ export default function RootLayout({
         <ClientOnly>
           <LanguageProvider>
             <Nav />
-            <Scrollbars />
             {children}
             <Footer />
           </LanguageProvider>

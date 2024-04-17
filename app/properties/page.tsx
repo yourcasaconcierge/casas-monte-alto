@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { getProperties } from '@/utils/getProperties';
 import PropertyPreview from '../components/PropertyPreview';
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'Properties',
 };
