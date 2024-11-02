@@ -2,6 +2,7 @@
 
 import { LanguageContext } from '@/context/LanguageContext';
 import { Property, PropertyNode } from '@/types/PropertyTypes';
+import { useData } from '@/context/DataContext';
 import { useContext, useEffect, useState } from 'react';
 import Loader from './Loader';
 import Image from 'next/image';
@@ -12,64 +13,65 @@ import ContentDivider from './ContentDivider';
 
 interface PropertyProps {
   slug: string;
-  data: Property[];
 }
 
-const Property = ({ slug, data }: PropertyProps) => {
+const PropertyTemplate = ({ slug }: PropertyProps) => {
   const [modal, setModal] = useState(false);
-  const [property, setProperty] = useState<PropertyNode>();
+  const [selectedProperty, setSelectedProperty] = useState<PropertyNode>();
   const [src, setSrc] = useState('');
+  const { properties } = useData();
+  let data = properties as Property[];
   const { language } = useContext(LanguageContext);
   const featuresArray = (language: string) => {
     if (language === 'english') {
-      return property?.englishFeatures.text.split('\\n').slice(0, -1);
+      return selectedProperty?.englishFeatures.text.split('\\n').slice(0, -1);
     } else {
-      return property?.spanishFeatures.text.split('\\n').slice(0, -1);
+      return selectedProperty?.spanishFeatures.text.split('\\n').slice(0, -1);
     }
   };
 
   const amenitiesArray = (language: string) => {
     if (language === 'english') {
-      return property?.englishAmenities.text.split('\\n').slice(0, -1);
+      return selectedProperty?.englishAmenities.text.split('\\n').slice(0, -1);
     } else {
-      return property?.spanishAmenities.text.split('\\n').slice(0, -1);
+      return selectedProperty?.spanishAmenities.text.split('\\n').slice(0, -1);
     }
   };
 
   useEffect(() => {
-    const foundProperty = data.find(property => property.node.slug === slug);
-    foundProperty && setProperty(foundProperty.node);
+    const foundProperty = data.find((property) => property.node.slug === slug);
+    foundProperty && setSelectedProperty(foundProperty.node);
   }, [data, slug]);
   return (
     <div className="my-32 layout lg:text-lg flex flex-col ">
-      {!property ? (
+      {!selectedProperty ? (
         <Loader />
       ) : (
         <>
           <h1 className="text-3xl lg:text-5xl uppercase">
-            {property.propertyName}
+            {selectedProperty.propertyName}
           </h1>
           <div className="lg:flex gap-5 lg:text-2xl">
             <p>
               {language === 'english' ? 'Bedroom(s)' : 'Dormitorio(s)'}:{' '}
-              {property.bedrooms}
+              {selectedProperty.bedrooms}
             </p>
             <p>
               {language === 'english' ? 'Bathroom(s)' : 'Baño(s)'}:{' '}
-              {property.bathrooms}
+              {selectedProperty.bathrooms}
             </p>
           </div>
           <ContentDivider />
           <Image
-            src={property.images[0].url}
-            alt={property.propertyName}
+            src={selectedProperty.images[0].url}
+            alt={selectedProperty.propertyName}
             className="object-cover w-full h-[30vh] lg:h-[500px]"
             width={1280}
             height={1080}
           />
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5">
-            {property.images.map((image, index) => {
+            {selectedProperty.images.map((image, index) => {
               return (
                 <>
                   <div
@@ -84,7 +86,7 @@ const Property = ({ slug, data }: PropertyProps) => {
                       src={image.url}
                       alt="Room(s)"
                       className="object-cover aspect-square bg-neutral-500 animate animate-pulse"
-                      onLoadingComplete={image => {
+                      onLoadingComplete={(image) => {
                         image.classList.remove('animate-pulse');
                       }}
                       width={1920}
@@ -99,8 +101,8 @@ const Property = ({ slug, data }: PropertyProps) => {
           <article>
             <Markdown>
               {language === 'english'
-                ? property.englishDescription.markdown
-                : property.spanishDescription.markdown}
+                ? selectedProperty.englishDescription.markdown
+                : selectedProperty.spanishDescription.markdown}
             </Markdown>
           </article>
           <ContentDivider />
@@ -135,7 +137,7 @@ const Property = ({ slug, data }: PropertyProps) => {
           )}
 
           <Link
-            href={property.featuresAndAmenitiesLink}
+            href={selectedProperty.featuresAndAmenitiesLink}
             className="underline hover:no-underline"
           >
             {language === 'english'
@@ -144,7 +146,7 @@ const Property = ({ slug, data }: PropertyProps) => {
           </Link>
           <div className="flex justify-center mt-10">
             <Link
-              href={property.postingLink}
+              href={selectedProperty.postingLink}
               className="bg-secondary text-primary px-5 py-3 text-lg inline-block"
             >
               {language === 'english' ? 'Book Now' : 'Reservar'}
@@ -157,4 +159,4 @@ const Property = ({ slug, data }: PropertyProps) => {
   );
 };
 
-export default Property;
+export default PropertyTemplate;

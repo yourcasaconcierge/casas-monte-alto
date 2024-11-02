@@ -1,32 +1,24 @@
 'use client';
 
 import { LanguageContext } from '@/context/LanguageContext';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
+import { useData } from '@/context/DataContext';
 import ImageLoader from '../ImageLoader';
 import LogoSvg from '../LogoSvg';
 import Banner from '../Banner';
 
-interface HeaderProps {
-  data: {
-    url: string;
-  };
-}
-
-const Hero = ({ data }: HeaderProps) => {
+const Hero = () => {
   const { head } = useContext(LanguageContext);
-  const [image, setImage] = useState('');
-
-  useEffect(() => {
-    setImage(data.url);
-  }, [data.url]);
+  const { landingImages } = useData();
+  const imageUrl = landingImages?.headerImage.url as string;
 
   return (
     <section className="max-lg:pb-8">
       <LogoSvg />
-      {!image ? (
+      {!landingImages ? (
         <ImageLoader variant="banner" />
       ) : (
-        <Banner src={image} alt="View of mountains and desert" />
+        <Banner src={imageUrl} alt="View of mountains and desert" />
       )}
       <h2 className="py-5 text-sm md:text-lg 2xl:text-xl border-b-[1px] border-secondary">
         {head?.line1} <br className="max-md:hidden" /> {head?.line2}

@@ -1,24 +1,19 @@
 'use client';
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { LanguageContext } from '@/context/LanguageContext';
+import { useData } from '@/context/DataContext';
 import ImageLoader from './ImageLoader';
 import Link from 'next/link';
 import LogoSvg from './LogoSvg';
 import RotatingArrow from './RotatingArrow';
 import Banner from './Banner';
 
-interface FooterContentProps {
-  data: {
-    url: string;
-  };
-}
-const FooterContent = ({ data }: FooterContentProps) => {
+const FooterContent = () => {
   const { foot } = useContext(LanguageContext);
-  const [image, setImage] = useState('');
-  useEffect(() => {
-    setImage(data.url);
-  }, [data.url]);
+  const { landingImages } = useData();
+  const imageUrl = landingImages?.headerImage.url as string;
+
   return (
     <div className="layout pb-5 justify-end paragraph">
       <div className="py-8 border-t-[1px] border-secondary">
@@ -30,10 +25,10 @@ const FooterContent = ({ data }: FooterContentProps) => {
           <RotatingArrow />
         </Link>
       </div>
-      {!image ? (
+      {!landingImages ? (
         <ImageLoader variant="banner" />
       ) : (
-        <Banner footer src={image} alt="Horse standing in desert field" />
+        <Banner footer src={imageUrl} alt="Horse standing in desert field" />
       )}
 
       <LogoSvg footer />

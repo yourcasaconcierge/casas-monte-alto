@@ -3,15 +3,14 @@
 import { Entry } from '@/types/EntryTypes';
 import { LanguageContext } from '@/context/LanguageContext';
 import { useContext } from 'react';
+import { useData } from '@/context/DataContext';
 import LatestEntryPreview from './LatestEntryPreview';
 import Loader from './Loader';
 import ArticleHero from './ArticleHero';
 
-interface EntriesProps {
-  data: Entry[];
-}
-
-const Entries = ({ data }: EntriesProps) => {
+const Entries = () => {
+  const { journalEntries } = useData();
+  let data = journalEntries as Entry[];
   data = data.sort((a: any, b: any) => {
     return (
       new Date(b.node.publishedAt).getTime() -

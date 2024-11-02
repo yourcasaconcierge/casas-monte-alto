@@ -1,26 +1,24 @@
 'use client';
 
 import { Entry, EntryNode } from '@/types/EntryTypes';
-import { Inter } from 'next/font/google';
 import { LanguageContext } from '@/context/LanguageContext';
 import { useContext, useEffect, useState } from 'react';
-import Image from 'next/image';
+import { useData } from '@/context/DataContext';
 import Loader from './Loader';
 import Markdown from 'markdown-to-jsx';
 import ArticleHero from './ArticleHero';
 
-const inter = Inter({ subsets: ['latin'] });
-
 interface EntryProps {
   slug: string;
-  data: Entry[];
 }
 
-const Entry = ({ slug, data }: EntryProps) => {
+const EntryTemplate = ({ slug }: EntryProps) => {
+  const { journalEntries } = useData();
   const { language } = useContext(LanguageContext);
   const [entry, setEntry] = useState<EntryNode>();
+  const data = journalEntries as Entry[];
   useEffect(() => {
-    const foundEntry = data.find(entry => entry.node.slug === slug);
+    const foundEntry = data.find((entry) => entry.node.slug === slug);
     foundEntry && setEntry(foundEntry.node);
   }, [data, slug]);
 
@@ -62,4 +60,4 @@ const Entry = ({ slug, data }: EntryProps) => {
   );
 };
 
-export default Entry;
+export default EntryTemplate;

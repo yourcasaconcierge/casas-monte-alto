@@ -2,7 +2,12 @@ import { EntryPreview } from '@/types/EntryTypes';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const EntryPreview = ({ slug, title, excerpt, image }: EntryPreview) => {
+const EntryPreviewTemplate = ({
+  slug,
+  title,
+  excerpt,
+  image,
+}: EntryPreview) => {
   return (
     <div
       key={slug}
@@ -27,4 +32,4 @@ const EntryPreview = ({ slug, title, excerpt, image }: EntryPreview) => {
   );
 };
 
-export default EntryPreview;
+export default EntryPreviewTemplate;

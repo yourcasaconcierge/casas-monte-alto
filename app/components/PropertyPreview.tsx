@@ -2,17 +2,16 @@
 
 import { GetScreenSize } from '@/hooks/getScreenSize';
 import { Property } from '@/types/PropertyTypes';
+import { useData } from '@/context/DataContext';
 import Image from 'next/image';
 import Link from 'next/link';
 import Loader from './Loader';
 import HoverOverlay from './HoverOverlay';
 import RotatingArrow from './RotatingArrow';
 
-interface PropertyPreviewProps {
-  data: Property[];
-}
-
-const PropertyPreview = ({ data }: PropertyPreviewProps) => {
+const PropertyPreview = () => {
+  const { properties } = useData();
+  let data = properties as Property[];
   data.sort((a: any, b: any) => {
     return (
       new Date(b.node.publishedAt).getTime() -

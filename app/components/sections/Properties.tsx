@@ -8,6 +8,7 @@ import { Swiper } from 'swiper/react';
 import { SwiperSlide } from 'swiper/react';
 import { useContext } from 'react';
 import { useRouter } from 'next/navigation';
+import { useData } from '@/context/DataContext';
 import Image from 'next/image';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -15,11 +16,9 @@ const inter = Inter({ subsets: ['latin'] });
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 
-interface PropertiesProps {
-  data: Property[];
-}
-
-const Properties = ({ data }: PropertiesProps) => {
+const Properties = () => {
+  const { properties } = useData();
+  const data = properties as Property[];
   data.sort((a: any, b: any) => {
     return (
       new Date(b.node.publishedAt).getTime() -

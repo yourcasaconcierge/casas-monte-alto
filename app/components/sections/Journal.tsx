@@ -3,14 +3,13 @@
 import { Entry } from '@/types/EntryTypes';
 import { LanguageContext } from '@/context/LanguageContext';
 import { useContext } from 'react';
+import { useData } from '@/context/DataContext';
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface EntriesProps {
-  data: Entry[];
-}
-
-const Journal = ({ data }: EntriesProps) => {
+const Journal = () => {
+  const { journalEntries } = useData();
+  let data = journalEntries as Entry[];
   data = data.sort((a: any, b: any) => {
     return (
       new Date(b.node.publishedAt).getTime() -
@@ -23,7 +22,7 @@ const Journal = ({ data }: EntriesProps) => {
     <section>
       <h3 className="text-center text-xl capitalize mb-14">{nav?.journal}</h3>
       <div className="flex max-lg:flex-col gap-20 xl:gap-32 ">
-        {entries?.map(entry => (
+        {entries?.map((entry) => (
           <Link
             href={`/journal/entry/${entry.node.slug}`}
             key={entry.node.slug}

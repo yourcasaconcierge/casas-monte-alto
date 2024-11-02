@@ -1,15 +1,26 @@
-import { HttpLink } from '@apollo/client';
 import {
-  NextSSRInMemoryCache,
-  NextSSRApolloClient,
-} from '@apollo/experimental-nextjs-app-support/ssr';
+  HttpLink,
+  InMemoryCache,
+  ApolloClient,
+  DefaultOptions,
+} from '@apollo/client';
 import { registerApolloClient } from '@apollo/experimental-nextjs-app-support/rsc';
 
+const defaultOptions: DefaultOptions = {
+  watchQuery: {
+    fetchPolicy: 'no-cache',
+  },
+  query: {
+    fetchPolicy: 'no-cache',
+  },
+};
+
 export const { getClient } = registerApolloClient(() => {
-  return new NextSSRApolloClient({
+  return new ApolloClient({
     link: new HttpLink({
       uri: process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT as string,
     }),
-    cache: new NextSSRInMemoryCache(),
+    cache: new InMemoryCache(),
+    defaultOptions,
   });
 });

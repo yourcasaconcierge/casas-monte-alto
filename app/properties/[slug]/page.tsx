@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import { getProperties } from '@/utils/getProperties';
-import Property from '@/app/components/Property';
+import PropertyTemplate from '@/app/components/PropertyTemplate';
 
 type Props = {
   params: {
@@ -19,7 +18,7 @@ export async function generateMetadata({
 }: Params): Promise<Metadata> {
   const formattedTitle = slug
     .split('-')
-    .map(word => {
+    .map((word) => {
       return word.charAt(0).toUpperCase() + word.slice(1);
     })
     .join(' ');
@@ -29,10 +28,9 @@ export async function generateMetadata({
 }
 
 const ProperyPage = async (props: Props) => {
-  const data = await getProperties();
   return (
     <main>
-      <Property slug={props.params.slug} data={data} />
+      <PropertyTemplate slug={props.params.slug} />
     </main>
   );
 };

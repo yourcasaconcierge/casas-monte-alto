@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { Roboto_Mono } from 'next/font/google';
-import ClientOnly from './components/ClientOnly';
+import DataProviderWrapper from './components/DataProviderWrapper';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
-import Scrollbars from './components/Scrollbar';
 
 import './globals.css';
 
 const robotoMono = Roboto_Mono({ subsets: ['latin'] });
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: 'Casas Monte Alto',
@@ -40,13 +40,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${robotoMono.className} scrollhost`}>
-        <ClientOnly>
+        <DataProviderWrapper>
           <LanguageProvider>
             <Nav />
             {children}
             <Footer />
           </LanguageProvider>
-        </ClientOnly>
+        </DataProviderWrapper>
       </body>
     </html>
   );
