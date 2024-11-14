@@ -46,6 +46,13 @@ export const getAbouts = async () => {
   `;
   const { data } = await client.query({
     query,
+    context: {
+      fetchOptions: {
+        next: {
+          revalidate: 3600,
+        },
+      },
+    },
   });
 
   return data.aboutsConnection.edges;

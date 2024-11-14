@@ -1,3 +1,4 @@
+import { revalidate } from '@/app/layout';
 import { getClient } from '@/lib/client';
 import { gql } from '@apollo/client';
 
@@ -48,6 +49,13 @@ export const getProperties = async () => {
   `;
   const { data } = await client.query({
     query,
+    context: {
+      fetchOptions: {
+        next: {
+          revalidate: 3600,
+        },
+      },
+    },
   });
 
   return data.propertiesConnection.edges;

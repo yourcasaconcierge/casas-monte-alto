@@ -8,7 +8,7 @@ import Nav from './components/Nav';
 import './globals.css';
 
 const robotoMono = Roboto_Mono({ subsets: ['latin'] });
-export const revalidate = 86400;
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: 'Casas Monte Alto',

@@ -32,6 +32,13 @@ export const getLandingImages = async () => {
   `;
   const { data } = await client.query({
     query,
+    context: {
+      fetchOptions: {
+        next: {
+          revalidate: 3600,
+        },
+      },
+    },
   });
   const headerImage = data.headerImagesConnection.edges[0].node.image;
   const footerImage = data.footerImagesConnection.edges[0].node.image;

@@ -34,6 +34,13 @@ export const getEntries = async () => {
   `;
   const { data } = await client.query({
     query,
+    context: {
+      fetchOptions: {
+        next: {
+          revalidate: 3600,
+        },
+      },
+    },
   });
 
   return data.entriesConnection.edges;
