@@ -1,26 +1,18 @@
 'use client';
 
-import { Entry, EntryNode } from '@/types/EntryTypes';
+import { Entry } from '@/types/EntryTypes';
 import { LanguageContext } from '@/context/LanguageContext';
-import { useContext, useEffect, useState } from 'react';
-import { useData } from '@/context/DataContext';
+import { useContext } from 'react';
 import Loader from './Loader';
 import Markdown from 'markdown-to-jsx';
 import ArticleHero from './ArticleHero';
 
 interface EntryProps {
-  slug: string;
+  data: Entry | null;
 }
 
-const EntryTemplate = ({ slug }: EntryProps) => {
-  const { journalEntries } = useData();
+const EntryTemplate = ({ data: entry }: EntryProps) => {
   const { language } = useContext(LanguageContext);
-  const [entry, setEntry] = useState<EntryNode>();
-  const data = journalEntries as Entry[];
-  useEffect(() => {
-    const foundEntry = data.find((entry) => entry.node.slug === slug);
-    foundEntry && setEntry(foundEntry.node);
-  }, [data, slug]);
 
   return (
     <div className="layout max-lg:mt-32 mb-32 flex flex-col items-center">

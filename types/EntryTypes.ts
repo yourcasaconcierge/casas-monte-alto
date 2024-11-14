@@ -5,7 +5,7 @@ export interface EntryPreview {
   image: string;
 }
 
-export interface Entry {
+export interface Entries {
   node: {
     englishTitle: string;
     englishSubtitle: string;
@@ -26,6 +26,26 @@ export interface Entry {
     createdAt: string;
     publishedAt: string;
   };
+}
+export interface Entry {
+  englishTitle: string;
+  englishSubtitle: string;
+  englishExcerpt: string;
+  englishContent: {
+    markdown: string;
+  };
+  spanishTitle: string;
+  spanishSubtitle: string;
+  spanishExcerpt: string;
+  spanishContent: {
+    markdown: string;
+  };
+  featuredImage: {
+    url: string;
+  };
+  slug: string;
+  createdAt: string;
+  publishedAt: string;
 }
 
 export interface EntryNode {

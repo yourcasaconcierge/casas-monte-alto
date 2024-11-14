@@ -10,13 +10,13 @@ import {
 } from 'react';
 import { Properties } from '@/types/PropertyTypes';
 import { LandingImages } from '@/types/LandingImages';
-import { Entry } from '@/types/EntryTypes';
+import { Entries } from '@/types/EntryTypes';
 import LoadingScreen from '@/app/components/LoadingScreen';
 
 interface DataContextProps {
   properties: Properties[] | null;
   landingImages: LandingImages | null;
-  journalEntries: Entry[] | null;
+  journalEntries: Entries[] | null;
 }
 
 const DataContext = createContext<DataContextProps | undefined>(undefined);

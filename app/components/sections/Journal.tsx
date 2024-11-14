@@ -1,6 +1,6 @@
 'use client';
 
-import { Entry } from '@/types/EntryTypes';
+import { Entries } from '@/types/EntryTypes';
 import { LanguageContext } from '@/context/LanguageContext';
 import { useContext } from 'react';
 import { useData } from '@/context/DataContext';
@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 const Journal = () => {
   const { journalEntries } = useData();
-  let data = journalEntries as Entry[];
+  let data = journalEntries as Entries[];
   data = data.sort((a: any, b: any) => {
     return (
       new Date(b.node.publishedAt).getTime() -

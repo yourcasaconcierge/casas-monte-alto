@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import EntryTemplate from '@/app/components/EntryTemplate';
+import { getEntry } from '@/utils/getEntry';
 
 type Params = {
   params: {
@@ -22,9 +23,10 @@ export async function generateMetadata({
 }
 
 const EntryPage = async (props: Params) => {
+  const data = await getEntry(props.params.slug);
   return (
     <main>
-      <EntryTemplate slug={props.params.slug} />
+      <EntryTemplate slug={props.params.slug} data={data} />
     </main>
   );
 };
