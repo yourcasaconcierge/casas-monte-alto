@@ -26,7 +26,7 @@ const EntryPage = async (props: Params) => {
   const data = await getEntry(props.params.slug);
   return (
     <main>
-      <EntryTemplate slug={props.params.slug} data={data} />
+      <EntryTemplate data={data} />
     </main>
   );
 };
