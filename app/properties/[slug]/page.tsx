@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import PropertyTemplate from '@/app/components/PropertyTemplate';
+import { getProperty } from '@/utils/getProperty';
 
 type Props = {
   params: {
@@ -28,9 +29,10 @@ export async function generateMetadata({
 }
 
 const ProperyPage = async (props: Props) => {
+  const data = await getProperty(props.params.slug);
   return (
     <main>
-      <PropertyTemplate slug={props.params.slug} />
+      <PropertyTemplate data={data} />
     </main>
   );
 };

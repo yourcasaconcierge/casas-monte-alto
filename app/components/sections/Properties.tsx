@@ -2,7 +2,7 @@
 
 import { Inter } from 'next/font/google';
 import { LanguageContext } from '@/context/LanguageContext';
-import { Property } from '@/types/PropertyTypes';
+import { Properties } from '@/types/PropertyTypes';
 import { Scrollbar, A11y } from 'swiper/modules';
 import { Swiper } from 'swiper/react';
 import { SwiperSlide } from 'swiper/react';
@@ -16,9 +16,9 @@ const inter = Inter({ subsets: ['latin'] });
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 
-const Properties = () => {
+const PropertiesTemplate = () => {
   const { properties } = useData();
-  const data = properties as Property[];
+  const data = properties as Properties[];
   data.sort((a: any, b: any) => {
     return (
       new Date(b.node.publishedAt).getTime() -
@@ -102,7 +102,7 @@ const Properties = () => {
   );
 };
 
-export default Properties;
+export default PropertiesTemplate;
 
 const ComingSoonTemplate = ({
   header,

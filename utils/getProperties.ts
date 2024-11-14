@@ -1,4 +1,3 @@
-import { revalidate } from '@/app/layout';
 import { getClient } from '@/lib/client';
 import { gql } from '@apollo/client';
 

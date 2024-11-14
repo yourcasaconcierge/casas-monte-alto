@@ -1,9 +1,8 @@
 'use client';
 
 import { LanguageContext } from '@/context/LanguageContext';
-import { Property, PropertyNode } from '@/types/PropertyTypes';
-import { useData } from '@/context/DataContext';
-import { useContext, useEffect, useState } from 'react';
+import { Property } from '@/types/PropertyTypes';
+import { useContext, useState } from 'react';
 import Loader from './Loader';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,66 +11,59 @@ import Markdown from 'markdown-to-jsx';
 import ContentDivider from './ContentDivider';
 
 interface PropertyProps {
-  slug: string;
+  data: Property;
 }
 
-const PropertyTemplate = ({ slug }: PropertyProps) => {
+const PropertyTemplate = ({ data: property }: PropertyProps) => {
   const [modal, setModal] = useState(false);
-  const [selectedProperty, setSelectedProperty] = useState<PropertyNode>();
   const [src, setSrc] = useState('');
-  const { properties } = useData();
-  let data = properties as Property[];
   const { language } = useContext(LanguageContext);
   const featuresArray = (language: string) => {
     if (language === 'english') {
-      return selectedProperty?.englishFeatures.text.split('\\n').slice(0, -1);
+      return property?.englishFeatures.text.split('\\n').slice(0, -1);
     } else {
-      return selectedProperty?.spanishFeatures.text.split('\\n').slice(0, -1);
+      return property?.spanishFeatures.text.split('\\n').slice(0, -1);
     }
   };
 
   const amenitiesArray = (language: string) => {
     if (language === 'english') {
-      return selectedProperty?.englishAmenities.text.split('\\n').slice(0, -1);
+      return property?.englishAmenities.text.split('\\n').slice(0, -1);
     } else {
-      return selectedProperty?.spanishAmenities.text.split('\\n').slice(0, -1);
+      return property?.spanishAmenities.text.split('\\n').slice(0, -1);
     }
   };
 
-  useEffect(() => {
-    const foundProperty = data.find((property) => property.node.slug === slug);
-    foundProperty && setSelectedProperty(foundProperty.node);
-  }, [data, slug]);
   return (
     <div className="my-32 layout lg:text-lg flex flex-col ">
-      {!selectedProperty ? (
+      {!property ? (
         <Loader />
       ) : (
         <>
           <h1 className="text-3xl lg:text-5xl uppercase">
-            {selectedProperty.propertyName}
+            {property.propertyName}
           </h1>
           <div className="lg:flex gap-5 lg:text-2xl">
             <p>
               {language === 'english' ? 'Bedroom(s)' : 'Dormitorio(s)'}:{' '}
-              {selectedProperty.bedrooms}
+              {property.bedrooms}
             </p>
             <p>
               {language === 'english' ? 'Bathroom(s)' : 'Baño(s)'}:{' '}
-              {selectedProperty.bathrooms}
+              {property.bathrooms}
             </p>
           </div>
           <ContentDivider />
           <Image
-            src={selectedProperty.images[0].url}
-            alt={selectedProperty.propertyName}
+            src={property.images[0].url}
+            alt={property.propertyName}
             className="object-cover w-full h-[30vh] lg:h-[500px]"
             width={1280}
             height={1080}
           />
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5">
-            {selectedProperty.images.map((image, index) => {
+            {property.images.map((image, index) => {
               return (
                 <>
                   <div
@@ -101,8 +93,8 @@ const PropertyTemplate = ({ slug }: PropertyProps) => {
           <article>
             <Markdown>
               {language === 'english'
-                ? selectedProperty.englishDescription.markdown
-                : selectedProperty.spanishDescription.markdown}
+                ? property.englishDescription.markdown
+                : property.spanishDescription.markdown}
             </Markdown>
           </article>
           <ContentDivider />
@@ -137,7 +129,7 @@ const PropertyTemplate = ({ slug }: PropertyProps) => {
           )}
 
           <Link
-            href={selectedProperty.featuresAndAmenitiesLink}
+            href={property.featuresAndAmenitiesLink}
             className="underline hover:no-underline"
           >
             {language === 'english'
@@ -146,7 +138,7 @@ const PropertyTemplate = ({ slug }: PropertyProps) => {
           </Link>
           <div className="flex justify-center mt-10">
             <Link
-              href={selectedProperty.postingLink}
+              href={property.postingLink}
               className="bg-secondary text-primary px-5 py-3 text-lg inline-block"
             >
               {language === 'english' ? 'Book Now' : 'Reservar'}

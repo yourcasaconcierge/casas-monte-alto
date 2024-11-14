@@ -8,13 +8,13 @@ import {
   useState,
   useEffect,
 } from 'react';
-import { Property } from '@/types/PropertyTypes';
+import { Properties } from '@/types/PropertyTypes';
 import { LandingImages } from '@/types/LandingImages';
 import { Entry } from '@/types/EntryTypes';
 import LoadingScreen from '@/app/components/LoadingScreen';
 
 interface DataContextProps {
-  properties: Property[] | null;
+  properties: Properties[] | null;
   landingImages: LandingImages | null;
   journalEntries: Entry[] | null;
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { GetScreenSize } from '@/hooks/getScreenSize';
-import { Property } from '@/types/PropertyTypes';
+import { Properties } from '@/types/PropertyTypes';
 import { useData } from '@/context/DataContext';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,7 +11,7 @@ import RotatingArrow from './RotatingArrow';
 
 const PropertyPreview = () => {
   const { properties } = useData();
-  let data = properties as Property[];
+  let data = properties as Properties[];
   data.sort((a: any, b: any) => {
     return (
       new Date(b.node.publishedAt).getTime() -
