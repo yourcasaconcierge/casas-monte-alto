@@ -8,14 +8,14 @@ interface AnimationProps {
   reveal?: boolean;
   slidingImage?: boolean;
   left?: boolean;
-  scale?: boolean;
+  bottom?: boolean;
 }
 
 const Animation = ({
   children,
   reveal,
   slidingImage,
-  scale,
+  bottom,
   left,
 }: AnimationProps) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -72,11 +72,13 @@ const Animation = ({
         </m.div>
       )}
 
-      {scale && (
+      {bottom && (
         <m.div
           variants={{
-            hidden: { scale: 0 },
-            visible: { scale: 0.7 },
+            // hidden: { scale: 0 },
+            // visible: { scale: 0.7 },
+            hidden: { opacity: 0, y: 300 },
+            visible: { opacity: 1, y: 0 },
           }}
           initial="hidden"
           animate={mainControls}

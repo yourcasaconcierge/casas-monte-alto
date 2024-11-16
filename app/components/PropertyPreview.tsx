@@ -61,7 +61,8 @@ const PropertyPreview = () => {
                 }
                 `}
                   >
-                    0{number} {property.node.propertyName}
+                    {number <= 9 ? '0' : ''}
+                    {number} {property.node.propertyName}
                     <RotatingArrow />
                   </p>
 

@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import Animation from './Animation';
 import Image from 'next/image';
 import Loader from '@/app/components/Loader';
+import { AboutSectionContainer } from './AboutSectionContainer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -64,7 +65,7 @@ const About = ({ data }: AboutProps) => {
   ];
 
   return (
-    <div className="flex flex-col gap-32">
+    <div className="flex flex-col gap-[45vh]">
       <section className="w-full h-screen flex justify-center items-center">
         <h1
           className={`
@@ -75,7 +76,7 @@ const About = ({ data }: AboutProps) => {
         </h1>
       </section>
 
-      <section className="max-w-7xl pt-[20vmin] pb-[30vmin]  lg:pr-96 max-lg:mb-[50vh]">
+      <section className="max-w-7xl lg:pr-96">
         <Animation reveal>
           <h2
             className={`
@@ -87,7 +88,7 @@ const About = ({ data }: AboutProps) => {
         </Animation>
       </section>
 
-      <section>
+      <section className="">
         <Animation slidingImage left>
           <Image
             src={imageOne?.url}
@@ -99,7 +100,7 @@ const About = ({ data }: AboutProps) => {
         </Animation>
       </section>
 
-      <section className="max-w-7xl pt-[20vmin] pb-[30vmin] flex items-center lg:pr-96">
+      <section className="max-w-7xl flex items-center lg:pr-96">
         <Animation reveal>
           <h3
             className={`
@@ -118,26 +119,28 @@ const About = ({ data }: AboutProps) => {
             alt="Change this"
             width={2029}
             height={1353}
-            className="w-full max-w-3xl h-[350px] lg:h-[593px] bg-secondary object-cover float-right"
+            className="w-full max-w-3xl h-[350px] lg:h-[593px] object-cover float-right"
           />
         </Animation>
       </section>
 
-      <section className="relative lg:h-screen max-lg:mb-[50vh] lg:mt-32">
-        <h4
-          className={`
+      <section className="relative lg:h-screen lg:flex flex-col items-center justify-center">
+        <Animation bottom>
+          <h4
+            className={`
           ${inter.className}
-          text-3xl md:text-[4.5vw] md:leading-none font-bold text-center lg:-mb-20`}
-        >
-          {language === 'english' ? englishHeaderFour : spanishHeaderFour}
-        </h4>
-        <Animation scale>
+          text-3xl md:text-[4.5vw] md:leading-none font-bold text-center mb-32`}
+          >
+            {language === 'english' ? englishHeaderFour : spanishHeaderFour}
+          </h4>
+        </Animation>
+        <Animation bottom>
           <Image
             src={imageThree?.url}
             alt="Change this"
             width={1148}
             height={700}
-            className="object-cover w-full h-[500px] lg:h-[1000px]"
+            className="object-cover w-full max-w-5xl h-[350px] lg:h-[700px]"
           />
         </Animation>
       </section>
