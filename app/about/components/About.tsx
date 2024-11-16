@@ -7,7 +7,6 @@ import { useContext } from 'react';
 import Animation from './Animation';
 import Image from 'next/image';
 import Loader from '@/app/components/Loader';
-import { AboutSectionContainer } from './AboutSectionContainer';
 
 const inter = Inter({ subsets: ['latin'] });
 
