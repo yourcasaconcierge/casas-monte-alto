@@ -22,7 +22,7 @@ const contact = {
 };
 
 const footer = {
-  line1: '© 2023 CASAS MONTE ALTO. All rights reserved.',
+  line1: 'CASAS MONTE ALTO. All rights reserved.',
   line2: 'credits',
 };
 

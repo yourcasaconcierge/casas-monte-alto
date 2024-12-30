@@ -43,8 +43,10 @@ const Journal = () => {
             </div>
 
             <div>
-              <p>{language === 'english' ? 'Entry' : 'Entrada'}</p>
-              <p className="font-bold paragraph">
+              <p className="font-medium">
+                {language === 'english' ? 'Entry' : 'Entrada'}
+              </p>
+              <p className="font-semibold paragraph">
                 {language === 'english'
                   ? entry.node?.englishTitle
                   : entry.node?.spanishTitle}

@@ -21,7 +21,7 @@ const Nav = () => {
       <nav
         className={`
         ${isOpen === 'open' ? '' : 'shadow-lg'}
-        fixed top-0 left-0 w-full py-8 text-secondary bg-primary z-50 paragraph`}
+        fixed top-0 left-0 w-full py-8 text-secondary bg-primary z-50 paragraph font-semibold`}
       >
         <div className="flex justify-between items-center layout">
           <div className="hidden lg:flex gap-3">

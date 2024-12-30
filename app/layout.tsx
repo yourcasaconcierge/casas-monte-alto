@@ -1,13 +1,11 @@
 import type { Metadata } from 'next';
 import { LanguageProvider } from '@/context/LanguageContext';
-import { Roboto_Mono } from 'next/font/google';
+import { fellix } from './components/font/CustomFonts';
 import DataProviderWrapper from './components/DataProviderWrapper';
 import Footer from './components/Footer';
 import Nav from './components/Nav';
-
 import './globals.css';
 
-const robotoMono = Roboto_Mono({ subsets: ['latin'] });
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
@@ -39,7 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${robotoMono.className} scrollhost`}>
+      <body className={`${fellix.className} scrollhost`}>
         <DataProviderWrapper>
           <LanguageProvider>
             <Nav />

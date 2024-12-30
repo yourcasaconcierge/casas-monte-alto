@@ -12,6 +12,7 @@ import Banner from './Banner';
 const FooterContent = () => {
   const { foot } = useContext(LanguageContext);
   const { landingImages } = useData();
+  const date = new Date();
   const imageUrl = landingImages?.headerImage.url as string;
 
   return (
@@ -33,7 +34,9 @@ const FooterContent = () => {
 
       <LogoSvg footer />
       <div className="flex justify-between small-text">
-        <p>{foot?.line1}</p>
+        <p>
+          © {date.getFullYear()} {foot?.line1}
+        </p>
         <Link
           href="https://www.linkedin.com/in/terel-phillips/"
           target="_blank"

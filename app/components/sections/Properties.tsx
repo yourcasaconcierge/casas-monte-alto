@@ -67,7 +67,7 @@ const PropertiesTemplate = () => {
                 />
               </div>
               <div className="flex flex-col gap-2 py-5">
-                <h3 className="text-lg 2xl:text-2xl">
+                <h3 className="text-lg 2xl:text-2xl font-medium">
                   {property.node.propertyName}
                 </h3>
                 <p className="paragraph line-clamp-1">
