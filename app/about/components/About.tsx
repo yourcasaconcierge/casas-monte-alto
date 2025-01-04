@@ -1,14 +1,11 @@
 'use client';
 
 import { AboutNode } from '@/types/AboutTypes';
-import { Inter } from 'next/font/google';
 import { LanguageContext } from '@/context/LanguageContext';
 import { useContext } from 'react';
 import Animation from './Animation';
 import Image from 'next/image';
 import Loader from '@/app/components/Loader';
-
-const inter = Inter({ subsets: ['latin'] });
 
 interface AboutProps {
   data: AboutNode;
@@ -68,7 +65,7 @@ const About = ({ data }: AboutProps) => {
       <section className="w-full h-screen flex justify-center items-center">
         <h1
           className={`
-          ${inter.className}
+
         text-3xl md:text-[4.5vw] md:leading-none md:px-10 text-center font-extrabold`}
         >
           {language === 'english' ? englishHeaderOne : spanishHeaderOne}
@@ -79,7 +76,6 @@ const About = ({ data }: AboutProps) => {
         <Animation reveal>
           <h2
             className={`
-        ${inter.className}
         text-2xl lg:text-5xl font-bold`}
           >
             {language === 'english' ? englishHeaderTwo : spanishHeaderTwo}
@@ -101,11 +97,7 @@ const About = ({ data }: AboutProps) => {
 
       <section className="max-w-7xl flex items-center lg:pr-96">
         <Animation reveal>
-          <h3
-            className={`
-            ${inter.className}
-            text-2xl lg:text-5xl font-bold`}
-          >
+          <h3 className={`text-2xl lg:text-5xl font-bold`}>
             {language === 'english' ? englishHeaderThree : spanishHeaderThree}
           </h3>
         </Animation>
@@ -126,9 +118,7 @@ const About = ({ data }: AboutProps) => {
       <section className="relative lg:h-screen lg:flex flex-col items-center justify-center">
         <Animation bottom>
           <h4
-            className={`
-          ${inter.className}
-          text-3xl md:text-[4.5vw] md:leading-none font-bold text-center mb-32`}
+            className={`text-3xl md:text-[4.5vw] md:leading-none font-bold text-center mb-32`}
           >
             {language === 'english' ? englishHeaderFour : spanishHeaderFour}
           </h4>
@@ -163,13 +153,7 @@ const SubSection = ({
     <Animation reveal>
       <div className="max-w-7xl pt-[20vmin] pb-[30vmin] justify-center items-center xl:pr-96 max-lg:mb-[50vh]">
         <div className="flex flex-col gap-5 text-3xl lg:text-7xl">
-          <h3
-            className={`
-            ${inter.className}
-            font-bold`}
-          >
-            {data.heading}
-          </h3>
+          <h3 className="font-bold">{data.heading}</h3>
           <p className="text-[55%] lg:text-[35%] leading-normal lg:pr-56">
             {data.paragraph}
           </p>
